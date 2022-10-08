@@ -1,2 +1,2 @@
 # projetoPOO
-Repositório de  homologação do projeto POO
+Repositório do projeto POO
