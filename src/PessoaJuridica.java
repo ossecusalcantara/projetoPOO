@@ -1,3 +1,4 @@
+package src;
 import java.time.LocalDate;
 
 public class PessoaJuridica extends Pessoa{
