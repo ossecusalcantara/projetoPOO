@@ -8,6 +8,10 @@ public class PessoaJuridica extends Pessoa{
     private LocalDate dataAbertura;
     private String cnae;
 
+    public PessoaJuridica(Integer id, String nome, Endereco endereco, String telefone, String email) {
+        super(id, nome, endereco, telefone, email);
+    }
+
     @Override
     public String getDocumentoPrincipal() {
         return this.cnpj;
@@ -29,7 +33,19 @@ public class PessoaJuridica extends Pessoa{
         this.cnae = cnae;
     }
 
-    public PessoaJuridica(Integer id, String nome, Endereco endereco, String telefone, String email) {
-        super(id, nome, endereco, telefone, email);
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public LocalDate getDataAbertura() {
+        return dataAbertura;
+    }
+
+    public String getCnae() {
+        return cnae;
     }
 }

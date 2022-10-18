@@ -7,6 +7,10 @@ public class PessoaFisica extends Pessoa{
     private String cpf;
     private LocalDate dataDeNascimento;
 
+    public PessoaFisica(Integer id, String nome, Endereco endereco, String telefone, String email) {
+        super(id, nome, endereco, telefone, email);
+    }
+
     @Override
     public String getDocumentoPrincipal() {
         return this.cpf;
@@ -20,7 +24,11 @@ public class PessoaFisica extends Pessoa{
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public PessoaFisica(Integer id, String nome, List<Endereco> endereco, String telefone, String email) {
-        super(id, nome, endereco, telefone, email);
+    public String getCpf() {
+        return cpf;
+    }
+
+    public LocalDate getDataDeNascimento() {
+        return dataDeNascimento;
     }
 }
