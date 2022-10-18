@@ -4,10 +4,17 @@ import java.util.List;
 public class Pessoa {
     private Integer id;
     private String nome;
-    private List<Endereco> endereco;
+    private Endereco endereco;
     private String telefone;
     private String email;
 
+    public Pessoa(Integer id, String nome, Endereco endereco, String telefone, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.email = email;
+    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -17,7 +24,7 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public void setEndereco(List<Endereco> endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
@@ -37,7 +44,7 @@ public class Pessoa {
         return nome;
     }
 
-    public List<Endereco> getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
@@ -47,5 +54,9 @@ public class Pessoa {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getDocumentoPrincipal(){
+        return "";
     }
 }

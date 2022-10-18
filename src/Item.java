@@ -7,7 +7,16 @@ public class Item {
     private BigDecimal valorUnitario;
     private BigDecimal valorTotal;
     private BigDecimal desconto; //desconto total
+    private TipoItem tipoItem;
 
+    public Item(Integer id, Integer quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, BigDecimal desconto, TipoItem tipoItem) {
+        this.id = id;
+        this.quantidade = quantidade;
+        this.valorUnitario = valorUnitario;
+        this.valorTotal = valorTotal;
+        this.desconto = desconto;
+        this.tipoItem = tipoItem;
+    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -47,6 +56,14 @@ public class Item {
 
     public BigDecimal getValorTotal() {
         return valorTotal;
+    }
+
+    public TipoItem getTipoItem() {
+        return tipoItem;
+    }
+
+    public void setTipoItem(TipoItem tipoItem) {
+        this.tipoItem = tipoItem;
     }
 
     private BigDecimal calcularValorTotal() {

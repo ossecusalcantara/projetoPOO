@@ -7,17 +7,15 @@ public class Estoque {
     private Integer quantidade;
     private BigDecimal custoUnitario;
     private BigDecimal custoTotal;
-    private BigDecimal valorUnitario; //Valor de venda
-    private BigDecimal valorTotal; //Valor de venda
 
-    public Estoque(Integer id, Produto produto, Integer quantidade, BigDecimal custoUnitario, BigDecimal custoTotal, BigDecimal valorUnitario, BigDecimal valorTotal) {
+
+    public Estoque(Integer id, Produto produto, Integer quantidade, BigDecimal custoUnitario, BigDecimal custoTotal) {
         this.id = id;
         this.produto = produto;
         this.quantidade = quantidade;
         this.custoUnitario = custoUnitario;
         this.custoTotal = custoTotal;
-        this.valorUnitario = valorUnitario;
-        this.valorTotal = valorTotal;
+
     }
 
     public void setId(Integer id) {
@@ -40,14 +38,6 @@ public class Estoque {
         this.custoTotal = custoTotal;
     }
 
-    public void setValorUnitario(BigDecimal valorUnitario) {
-        this.valorUnitario = valorUnitario;
-    }
-
-    public void setValorTotal(BigDecimal valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -68,22 +58,10 @@ public class Estoque {
         return custoTotal;
     }
 
-    public BigDecimal getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public BigDecimal getValorTotal() {
-        return valorTotal;
-    }
 
     private BigDecimal calcularCustoTotal() {
         custoTotal = this.custoUnitario.multiply(BigDecimal.valueOf(quantidade));
         return custoTotal;
-    }
-
-    private BigDecimal calcularValorTotal() {
-        valorTotal = this.valorUnitario.multiply(BigDecimal.valueOf(quantidade));
-        return valorTotal;
     }
 
 }

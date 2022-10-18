@@ -6,19 +6,17 @@ import java.util.List;
 public class OrdemDeServico {
     private Integer id;
     private LocalDate dataEntrada;
-    private LocalDate dataEntrega;
+    private LocalDate dataLimite;
     private String condicao;
-    private List<ItemProduto> itensProdutos;
-    private List<ItemServico> itensServicos;
-    private BigDecimal valorTotal ;
+    private List<Item> itens;
+    private BigDecimal valorTotal;
 
-    public OrdemDeServico(Integer id, LocalDate dataEntrada, LocalDate dataEntrega, String condicao, List<ItemProduto> itensProdutos, List<ItemServico> itensServicos, BigDecimal valorTotal) {
+    public OrdemDeServico(Integer id, LocalDate dataEntrada, LocalDate dataLimite, String condicao, List<ItemProduto> itensProdutos, List<Item> itens, BigDecimal valorTotal) {
         this.id = id;
         this.dataEntrada = dataEntrada;
-        this.dataEntrega = dataEntrega;
+        this.dataLimite = dataLimite;
         this.condicao = condicao;
-        this.itensProdutos = itensProdutos;
-        this.itensServicos = itensServicos;
+        this.itens = itens;
         this.valorTotal = calculaValorTotalProdutos(itensProdutos);
     }
 
@@ -30,8 +28,8 @@ public class OrdemDeServico {
         this.dataEntrada = dataEntrada;
     }
 
-    public void setDataEntrega(LocalDate dataEntrega) {
-        this.dataEntrega = dataEntrega;
+    public void setDataLimite(LocalDate dataLimite) {
+        this.dataLimite = dataLimite;
     }
 
     public void setCondicao(String condicao) {
@@ -39,11 +37,11 @@ public class OrdemDeServico {
     }
 
     public void setItensProdutos(List<ItemProduto> itensProdutos) {
-        this.itensProdutos = itensProdutos;
+        this.itens = itens;
     }
 
     public void setItensServicos(List<ItemServico> itensServicos) {
-        this.itensServicos = itensServicos;
+        this.itens = itens;
     }
 
     public void setValorTotal(BigDecimal valorTotal) {
@@ -58,8 +56,8 @@ public class OrdemDeServico {
         return dataEntrada;
     }
 
-    public LocalDate getDataEntrega() {
-        return dataEntrega;
+    public LocalDate getDataLimite() {
+        return dataLimite;
     }
 
     public String getCondicao() {
@@ -70,13 +68,13 @@ public class OrdemDeServico {
         return valorTotal;
     }
 
-    private BigDecimal calculaValorTotalProdutos(List<ItemProduto> itensProdutos) {
-        BigDecimal somaValorTotalProdutos = BigDecimal.valueOf(0);
-        for (ItemProduto valorTotal : itensProdutos){
-            somaValorTotalProdutos = somaValorTotalProdutos.add(valorTotal.getValorTotal());
-        }
-        return somaValorTotalProdutos;
-    }
+//    private BigDecimal calculaValorTotalProdutos(List<ItemProduto> itensProdutos) {
+//        BigDecimal somaValorTotalProdutos = BigDecimal.valueOf(0);
+//        for (ItemProduto valorTotal : itensProdutos){
+//            somaValorTotalProdutos = somaValorTotalProdutos.add(valorTotal.getValorTotal());
+//        }
+//        return somaValorTotalProdutos;
+//    }
 }
 
 
