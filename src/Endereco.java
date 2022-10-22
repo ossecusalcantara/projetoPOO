@@ -10,6 +10,7 @@ public class Endereco {
     private String cidade;
     private String pais;
 
+    //Construtuor completo
     public Endereco(Integer id, String logradouro, Integer numero, String cep, String complemento, String bairro, String cidade, String pais) {
         this.id = id;
         this.logradouro = logradouro;
@@ -19,6 +20,16 @@ public class Endereco {
         this.bairro = bairro;
         this.cidade = cidade;
         this.pais = pais;
+    }
+
+    //Construtor mais Simples caso não queiramos cadastro com todos os campos obrigatorios
+    public Endereco(Integer id, String logradouro, Integer numero, String cep, String bairro, String cidade) {
+        this.id = id;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.cep = cep;
+        this.bairro = bairro;
+        this.cidade = cidade;
     }
 
     public void setId(Integer id) {

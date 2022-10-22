@@ -1,5 +1,6 @@
 package src;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class PessoaJuridica extends Pessoa{
@@ -8,8 +9,14 @@ public class PessoaJuridica extends Pessoa{
     private LocalDate dataAbertura;
     private String cnae;
 
-    public PessoaJuridica(Integer id, String nome, Endereco endereco, String telefone, String email) {
+    public PessoaJuridica(Integer id, String nome, Endereco endereco, String telefone, String email, String razaoSocial, String cnpj, String cnae, String dataAbertura) {
         super(id, nome, endereco, telefone, email);
+        this.razaoSocial = razaoSocial;
+        this.cnpj = cnpj;
+        this.cnae = cnae;
+        //Conversor de Data em String para Local Date
+        DateTimeFormatter formatadorBarra = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.dataAbertura = LocalDate.parse(dataAbertura, formatadorBarra);
     }
 
     @Override
