@@ -35,7 +35,7 @@ public class NotaFiscal {
         this.icms = icms;
     }
 
-    public NotaFiscal(Integer id, LocalDate dataEmissao, TipoNota tipoNota, Integer numeroNota, BigDecimal desconto, List<Item> itens, BigDecimal valorBruto, BigDecimal valorLiquido, BigDecimal bcIss, BigDecimal iss) {
+    public NotaFiscal(Integer id, TipoNota tipoNota, LocalDate dataEmissao, Integer numeroNota, BigDecimal desconto, List<Item> itens, BigDecimal valorBruto, BigDecimal valorLiquido, BigDecimal bcIss, BigDecimal iss) {
         this.id = id;
         this.dataEmissao = dataEmissao;
         this.tipoNota = tipoNota;

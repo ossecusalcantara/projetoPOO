@@ -68,13 +68,13 @@ public class OrdemDeServico {
         return valorTotal;
     }
 
-//    private BigDecimal calculaValorTotalProdutos(List<ItemProduto> itensProdutos) {
-//        BigDecimal somaValorTotalProdutos = BigDecimal.valueOf(0);
-//        for (ItemProduto valorTotal : itensProdutos){
-//            somaValorTotalProdutos = somaValorTotalProdutos.add(valorTotal.getValorTotal());
-//        }
-//        return somaValorTotalProdutos;
-//    }
+    private BigDecimal calculaValorTotalProdutos(List<ItemProduto> itensProdutos) {
+        BigDecimal somaValorTotalProdutos = BigDecimal.valueOf(0);
+        for (ItemProduto valorTotal : itensProdutos){
+            somaValorTotalProdutos = somaValorTotalProdutos.add(valorTotal.getValorTotal());
+        }
+        return somaValorTotalProdutos;
+    }
 }
 
 
