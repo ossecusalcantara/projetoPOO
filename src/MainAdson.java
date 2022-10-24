@@ -112,7 +112,7 @@ public class MainAdson {
         }
 
         //Função que podera ser usada na entrada do programa no nosso Main Opções de Atividade a ser feita
-        public static void iniciarPrograma() {
+        public static int iniciarPrograma() {
             String[] opcoes;
             opcoes = new String[]{"Cadastrar Cliente", "Ordem de Serviço", "Gerar Relatório", "Gerar Nota Fiscal", "Minha Empresa","Sair"}; //Array com as opções de botões que ira aparecer
 
@@ -128,17 +128,17 @@ public class MainAdson {
             );
 
             if (resposta == 0) {
-                cadastrarPessoa();
+                return 0;
             } else if (resposta == 1) {
-                //Função ordem de Serviço
+                return 1;
             } else if (resposta == 2) {
-                //Função de gerar relatório
+                return 2;
             } else if (resposta == 3) {
-                // Função de gerar nota
+                return 3;
             } else if(resposta == 4) {
-                cadastrarMinhaEmprea();
+                return 4;
             } else {
-                System.exit(0);
+                return 5;
             }
 
         }
