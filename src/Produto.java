@@ -6,6 +6,13 @@ public class Produto {
     private String tipo;
     private Marca marca;
 
+    public Produto(Integer id, String descricao, String tipo, Marca marca) {
+        this.id = id;
+        this.descricao = descricao;
+        this.tipo = tipo;
+        this.marca = marca;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

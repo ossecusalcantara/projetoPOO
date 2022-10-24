@@ -58,10 +58,9 @@ public class Estoque {
         return custoTotal;
     }
 
-
-    private BigDecimal calcularCustoTotal() {
-        custoTotal = this.custoUnitario.multiply(BigDecimal.valueOf(quantidade));
-        return custoTotal;
+    public BigDecimal calcularCustoUnitario() {
+        custoUnitario = this.custoTotal.divide(BigDecimal.valueOf(quantidade));
+        return custoUnitario;
     }
 
 }

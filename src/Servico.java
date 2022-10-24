@@ -8,6 +8,13 @@ public class Servico {
     private LocalDate tempo;
     private BigDecimal valor;
 
+    public Servico(Integer id, String descricao, LocalDate tempo, BigDecimal valor) {
+        this.id = id;
+        this.descricao = descricao;
+        this.tempo = tempo;
+        this.valor = valor;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
