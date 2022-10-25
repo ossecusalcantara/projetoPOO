@@ -1,17 +1,19 @@
 package src;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Servico {
     private Integer id;
     private String descricao;
-    private LocalDate tempo;
+    private LocalDateTime tempo;
     private BigDecimal valor;
 
-    public Servico(Integer id, String descricao, LocalDate tempo, BigDecimal valor) {
+    public Servico(Integer id, String descricao, String tempo, BigDecimal valor) {
         this.id = id;
         this.descricao = descricao;
-        this.tempo = tempo;
+        DateTimeFormatter formatadorTempo = DateTimeFormatter.ofPattern("HH:mm:ss");
+        this.tempo = LocalDateTime.parse(tempo, formatadorTempo);
         this.valor = valor;
     }
 
@@ -23,7 +25,7 @@ public class Servico {
         this.descricao = descricao;
     }
 
-    public void setTempo(LocalDate tempo) {
+    public void setTempo(LocalDateTime tempo) {
         this.tempo = tempo;
     }
 
@@ -39,7 +41,7 @@ public class Servico {
         return descricao;
     }
 
-    public LocalDate getTempo() {
+    public LocalDateTime getTempo() {
         return tempo;
     }
 
