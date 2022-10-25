@@ -1,26 +1,64 @@
 package src;
+import src.repository.ClienteDAO;
+
 import javax.swing.*;
+
+import java.util.List;
+
+import static src.Main.iniciarMenuPrincipal;
 
 public class MainAdson {
     public static void main(String[] args) {
-        iniciarPrograma();
+
     }
 
-        public static void cadastrarPessoa() {
+        public static void escolherTipoCliente() {
             String[] opcoes;
-            opcoes = new String[]{"Cli. Pessoa Fisíca","Cli. Pessoa Juridica" }; //Array com as opções de botões que ira aparecer
+            opcoes = new String[]{"Cli. Pessoa Fisíca","Cli. Pessoa Juridica","Voltar" };
 
-            //Varialvel resposta vai receber um Int de acordo com a ordem dos botôes Ex: 0,1,2
             int resposta = JOptionPane.showOptionDialog(
                     null
-                    , "Que Tipo de cliente você deseja cadastrar? ?" // Mensagem
-                    , "Cadastro de Cliente"   // Titulo
+                    , "Escolha uma opção:" // Mensagem
+                    , "Inicio"  // Titulo
                     , JOptionPane.YES_NO_OPTION // Estilo da caixinha que ira aparecer
                     , JOptionPane.PLAIN_MESSAGE
                     , null // Icone. Você pode usar uma imagem se quiser, basta carrega-la e passar como referência/Endereço da pasta
                     , opcoes// Array de strings com os valores de cada botão.
                     , "Botao 3"  // Label do botão Default
             );
+
+            switch (resposta) {
+                case 0: // Cadastrar Pessoa Fisica
+                        Cliente cliente0 = cadastrarPessoa(0);
+                        ClienteDAO.salvar(cliente0);
+                        iniciarMenuPrincipal();
+                    break;
+                case 1: // Cadastrar Pessoa Juridica
+                       Cliente cliente1 = cadastrarPessoa(1);
+                       ClienteDAO.salvar(cliente1);
+                       iniciarMenuPrincipal();
+                    break;
+                case 2: //SAIR
+                    iniciarMenuPrincipal();
+                    break;
+            }
+        }
+
+        public static Cliente cadastrarPessoa(int resposta) {
+//            String[] opcoes;
+//            opcoes = new String[]{"Cli. Pessoa Fisíca","Cli. Pessoa Juridica" }; //Array com as opções de botões que ira aparecer
+//
+//            //Varialvel resposta vai receber um Int de acordo com a ordem dos botôes Ex: 0,1,2
+//            int resposta = JOptionPane.showOptionDialog(
+//                    null
+//                    , "Que Tipo de cliente você deseja cadastrar? ?" // Mensagem
+//                    , "Cadastro de Cliente"   // Titulo
+//                    , JOptionPane.YES_NO_OPTION // Estilo da caixinha que ira aparecer
+//                    , JOptionPane.PLAIN_MESSAGE
+//                    , null // Icone. Você pode usar uma imagem se quiser, basta carrega-la e passar como referência/Endereço da pasta
+//                    , opcoes// Array de strings com os valores de cada botão.
+//                    , "Botao 3"  // Label do botão Default
+//            );
 
             System.out.println(resposta);
 
@@ -49,9 +87,9 @@ public class MainAdson {
                 );
 
                 Cliente nowCliente = new Cliente(nowPessoa);
-
-                JOptionPane.showMessageDialog(null,"Cadastro Efetuado!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-                System.exit(0);
+                return nowCliente;
+//                JOptionPane.showMessageDialog(null,"Cadastro Efetuado!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+//                System.exit(0);
 
             } else {
 
@@ -68,16 +106,20 @@ public class MainAdson {
                 );
 
                 Cliente nowCliente = new Cliente(nowPessoa);
-                JOptionPane.showMessageDialog(null, "Cadastro Efetuado!","Aviso",JOptionPane.INFORMATION_MESSAGE);
-                System.exit(0);
-
+                return nowCliente;
             }
-
-
             //System.exit(0);
             //int resposta = JOptionPane.showConfirmDialog(frame,"escolha um", "escolha dois", JOptionPane.YES_NO_OPTION);
-            //verfica se a resposta é verdadeira
 
+        }
+
+        static void chamaRelatorioPessoa() {
+            List<Cliente> clientes = ClienteDAO.buscarTodos();
+            String listaClientes = "Lista de Pessoas";
+            for (Cliente cliente : clientes) {
+                listaClientes += "\n" + cliente.getPessoa().getNome() + "  email: " + cliente.getPessoa().getEmail() + "   documento: " + cliente.getPessoa().getDocumentoPrincipal();
+            }
+            JOptionPane.showMessageDialog(null, listaClientes);
         }
 
         public static void cadastrarMinhaEmprea() {
@@ -110,37 +152,7 @@ public class MainAdson {
 
         }
 
-        //Função que podera ser usada na entrada do programa no nosso Main Opções de Atividade a ser feita
-        public static int iniciarPrograma() {
-            String[] opcoes;
-            opcoes = new String[]{"Cadastrar Cliente", "Ordem de Serviço", "Gerar Relatório", "Gerar Nota Fiscal", "Minha Empresa","Sair"}; //Array com as opções de botões que ira aparecer
 
-            int resposta = JOptionPane.showOptionDialog(
-                    null
-                    , "Escolha uma opção:" // Mensagem
-                    , "Inicio"  // Titulo
-                    , JOptionPane.YES_NO_OPTION // Estilo da caixinha que ira aparecer
-                    , JOptionPane.PLAIN_MESSAGE
-                    , null // Icone. Você pode usar uma imagem se quiser, basta carrega-la e passar como referência/Endereço da pasta
-                    , opcoes// Array de strings com os valores de cada botão.
-                    , "Botao 3"  // Label do botão Default
-            );
-
-            if (resposta == 0) {
-                return 0;
-            } else if (resposta == 1) {
-                return 1;
-            } else if (resposta == 2) {
-                return 2;
-            } else if (resposta == 3) {
-                return 3;
-            } else if(resposta == 4) {
-                return 4;
-            } else {
-                return 5;
-            }
-
-        }
 
 }
 
