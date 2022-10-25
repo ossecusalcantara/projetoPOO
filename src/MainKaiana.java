@@ -8,11 +8,11 @@ import java.time.format.DateTimeFormatter;
 public class MainKaiana {
     public static void main(String[] args) {
         cadastrarProduto();
-        //cadastrarServico();
+        cadastrarServico();
 
     }
 
-    public static void cadastrarProduto() {
+    public static Produto cadastrarProduto() {
 
         Marca nowMarca = new Marca (
                 1,
@@ -26,27 +26,33 @@ public class MainKaiana {
                 nowMarca
         );
 
+        return nowProduto;
 
-        //rever se estoque realmente vai ficar dentro do cadastrarProduto
+    }
+
+    public static Servico cadastrarServico() {
+        BigDecimal valor;
+        Servico nowServico = new Servico (
+                1,
+                JOptionPane.showInputDialog(null,"Descrição: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE),
+                JOptionPane.showInputDialog(null,"Tempo Médio: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE),
+                valor = new BigDecimal(JOptionPane.showInputDialog(null,"Valor: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE))
+        );
+
+        return nowServico;
+    }
+
+    public static void  cadastrarEstoque() {
         BigDecimal custoTot;
         int quantidade;
         BigDecimal custoUnit;
         Estoque nowEstoque = new Estoque (
                 1,
-                nowProduto,
+                nowProduto, //como chamar meu produto já cadastrado
                 quantidade = Integer.parseInt(JOptionPane.showInputDialog(null,"Quantidade: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE)), //verificar como vamos controlar a quantidade no estoque
-                custoTot = new BigDecimal(JOptionPane.showInputDialog(null,"Valor Total: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE)),
-                custoUnit = custoTot.divide(BigDecimal.valueOf(quantidade)) //não consegui puxar a função da classe estoque
+                custoUnit =  new BigDecimal(JOptionPane.showInputDialog(null,"Valor Unitário: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE)),
+                custoTot = new BigDecimal(JOptionPane.showInputDialog(null,"Valor Total: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE))
         );
     }
 
-    public static void cadastrarServico() {
-        BigDecimal valor;
-        Servico nowServico = new Servico (
-                1,
-                JOptionPane.showInputDialog(null,"Descrição: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE),
-                LocalDate.parse(JOptionPane.showInputDialog(null,"Tempo Médio: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE), DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                valor = new BigDecimal(JOptionPane.showInputDialog(null,"Valor: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE))
-        );
-    }
 }
