@@ -26,6 +26,13 @@ public class MainKaiana {
                 nowMarca
         );
 
+        //Processo para adicionar estoque ass: Adson
+        Estoque estoque = new Estoque(
+                      1 // Id Teste
+                    , nowProduto
+                    , Integer.parseInt(JOptionPane.showInputDialog(null,"Quantidade do Produto para Estoque: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE))
+        );
+
         return nowProduto;
 
     }
@@ -42,17 +49,18 @@ public class MainKaiana {
         return nowServico;
     }
 
-    public static void  cadastrarEstoque() {
-        BigDecimal custoTot;
-        int quantidade;
-        BigDecimal custoUnit;
-        Estoque nowEstoque = new Estoque (
-                1,
-                nowProduto, //como chamar meu produto já cadastrado
-                quantidade = Integer.parseInt(JOptionPane.showInputDialog(null,"Quantidade: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE)), //verificar como vamos controlar a quantidade no estoque
-                custoUnit =  new BigDecimal(JOptionPane.showInputDialog(null,"Valor Unitário: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE)),
-                custoTot = new BigDecimal(JOptionPane.showInputDialog(null,"Valor Total: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE))
-        );
-    }
+//    anotação: Esta função poderia ser para editar o estoque mas primeiro é nescessario fazer o DAO
+//    public static void  cadastrarEstoque() {
+//        BigDecimal custoTot;
+//        int quantidade;
+//        BigDecimal custoUnit;
+//        Estoque nowEstoque = new Estoque (
+//                1,
+//                nowProduto, //como chamar meu produto já cadastrado
+//                quantidade = Integer.parseInt(JOptionPane.showInputDialog(null,"Quantidade: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE)), //verificar como vamos controlar a quantidade no estoque
+//                custoUnit =  new BigDecimal(JOptionPane.showInputDialog(null,"Valor Unitário: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE)),
+//                custoTot = new BigDecimal(JOptionPane.showInputDialog(null,"Valor Total: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE))
+//        );
+//    }
 
 }

@@ -34,32 +34,17 @@ public class MainAdson {
                         iniciarMenuPrincipal();
                     break;
                 case 1: // Cadastrar Pessoa Juridica
-                       Cliente cliente1 = cadastrarPessoa(1);
-                       ClienteDAO.salvar(cliente1);
-                       iniciarMenuPrincipal();
+                        Cliente cliente1 = cadastrarPessoa(1);
+                        ClienteDAO.salvar(cliente1);
+                        iniciarMenuPrincipal();
                     break;
                 case 2: //SAIR
-                    iniciarMenuPrincipal();
+                        iniciarMenuPrincipal();
                     break;
             }
         }
 
         public static Cliente cadastrarPessoa(int resposta) {
-//            String[] opcoes;
-//            opcoes = new String[]{"Cli. Pessoa Fisíca","Cli. Pessoa Juridica" }; //Array com as opções de botões que ira aparecer
-//
-//            //Varialvel resposta vai receber um Int de acordo com a ordem dos botôes Ex: 0,1,2
-//            int resposta = JOptionPane.showOptionDialog(
-//                    null
-//                    , "Que Tipo de cliente você deseja cadastrar? ?" // Mensagem
-//                    , "Cadastro de Cliente"   // Titulo
-//                    , JOptionPane.YES_NO_OPTION // Estilo da caixinha que ira aparecer
-//                    , JOptionPane.PLAIN_MESSAGE
-//                    , null // Icone. Você pode usar uma imagem se quiser, basta carrega-la e passar como referência/Endereço da pasta
-//                    , opcoes// Array de strings com os valores de cada botão.
-//                    , "Botao 3"  // Label do botão Default
-//            );
-
             System.out.println(resposta);
 
             //Estrutura para cadastro de endereço
@@ -88,8 +73,6 @@ public class MainAdson {
 
                 Cliente nowCliente = new Cliente(nowPessoa);
                 return nowCliente;
-//                JOptionPane.showMessageDialog(null,"Cadastro Efetuado!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-//                System.exit(0);
 
             } else {
 
@@ -108,7 +91,7 @@ public class MainAdson {
                 Cliente nowCliente = new Cliente(nowPessoa);
                 return nowCliente;
             }
-            //System.exit(0);
+
             //int resposta = JOptionPane.showConfirmDialog(frame,"escolha um", "escolha dois", JOptionPane.YES_NO_OPTION);
 
         }
@@ -122,7 +105,7 @@ public class MainAdson {
             JOptionPane.showMessageDialog(null, listaClientes);
         }
 
-        public static void cadastrarMinhaEmprea() {
+        public static PessoaJuridica cadastrarMinhaEmprea() {
         //Função para cadastrar a empresa em que o sistema esta sendo usado
 
             Endereco nowEndereco = new Endereco(
@@ -146,10 +129,7 @@ public class MainAdson {
                     , JOptionPane.showInputDialog(null,"Data de Abertura: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
             );
 
-            Cliente nowCliente = new Cliente(nowPessoa);
-            JOptionPane.showMessageDialog(null, "Cadastro Efetuado!","Aviso",JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
-
+            return nowPessoa;
         }
 
 
