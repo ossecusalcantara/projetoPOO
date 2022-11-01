@@ -6,6 +6,8 @@ import src.repository.UsuarioDAO;
 import javax.swing.*;
 
 import static src.MainAdson.*;
+import static src.MainKaiana.cadastrarProduto;
+import static src.MainKaiana.cadastrarServico;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,9 +16,10 @@ public class Main {
 
     }
 
+    //Função MenuPrincipal
     public static void iniciarMenuPrincipal() {
         String[] opcoes;
-        opcoes = new String[]{"Cadastros", "Serviço", "Relatório",  "Minha Empresa","Sair"}; //Array com as opções de botões que ira aparecer
+        opcoes = new String[]{"Cadastros", "Relatório",  "Minha Empresa","Sair"}; //Array com as opções de botões que ira aparecer
 
         int resposta = JOptionPane.showOptionDialog(
                 null
@@ -37,7 +40,7 @@ public class Main {
                 chamarMenuRelatorio();
                 break;
             case 2: //Seguro
-                chamarMenuRelatorio();
+                //chamarMenuMinhaEmpresa();
                 break;
             case 3: //SAIR
 
@@ -46,6 +49,7 @@ public class Main {
 
     }
 
+    //Função com opções de Cadastro
     public static void chamarMenuCadastros() {
         String[] opcoes;
         opcoes = new String[]{"Cliente", "Produto", "Serviço","Sair"}; //Array com as opções de botões que ira aparecer
@@ -63,17 +67,17 @@ public class Main {
 
         switch (resposta) {
             case 0: // Cadastrar Cliente
-                escolherTipoCliente();
+                    escolherTipoCliente();
               break;
             case 1: // Cadastrar Produto
-//                Produto produto = cadastrarProduto();
-//                ProdutoDao.salvar(produto);
-//                chamaMenuCadastros();
+                    Produto produto = cadastrarProduto();
+                    //ProdutoDAO.salvar(produto)
+                    iniciarMenuPrincipal();
                 break;
             case 2: // Cadastro de Serviço
-//                  Servico servico = casdatrarServico();
-//                  ServicoDAO.salvar(servico);
-//                  chamaMenuCadastros();
+                    Servico servico = cadastrarServico();
+                    src.ServicoDAO.salvar(servico);
+                    iniciarMenuPrincipal();
                 break;
             case 3: //SAIR
                     iniciarMenuPrincipal();
@@ -103,9 +107,8 @@ public class Main {
                 iniciarMenuPrincipal();
                 break;
             case 1: // Cadastrar Produto
-//                Produto produto = cadastrarProduto();
-//                ProdutoDao.salvar(produto);
-//                chamaMenuCadastros();
+                // chamaRelatorioProduto();
+                iniciarMenuPrincipal();
                 break;
             case 2: //SAIR
                 iniciarMenuPrincipal();

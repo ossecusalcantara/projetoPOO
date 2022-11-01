@@ -18,6 +18,13 @@ public class Estoque {
 
     }
 
+    public Estoque(Integer id, Produto produto, Integer quantidade) {
+        this.id = id;
+        this.produto = produto;
+        this.quantidade = quantidade;
+
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
