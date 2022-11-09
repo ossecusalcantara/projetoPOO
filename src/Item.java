@@ -70,6 +70,6 @@ public class Item {
         valorTotal = (this.valorUnitario.multiply(BigDecimal.valueOf(quantidade)).subtract(desconto)) ;
         return valorTotal;
     }
-
+ /// fazendo teste para git
 
 }
