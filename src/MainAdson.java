@@ -1,8 +1,14 @@
 package src;
 import src.repository.ClienteDAO;
+import src.repository.ProdutoDAO;
+import src.repository.UsuarioDAO;
 
 import javax.swing.*;
 
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static src.Main.iniciarMenuPrincipal;
@@ -12,7 +18,7 @@ public class MainAdson {
 
     }
 
-        public static void escolherTipoCliente() {
+        public static void escolherTipoCliente() throws ParseException {
             String[] opcoes;
             opcoes = new String[]{"Cli. Pessoa Fisíca","Cli. Pessoa Juridica","Voltar" };
 
@@ -131,6 +137,48 @@ public class MainAdson {
 
             return nowPessoa;
         }
+
+        private static Object chamaSelecaoProduto() {
+            // Select para escolher o produto
+            Object[] selectionValues = ProdutoDAO.findListaProdutoInArray();
+            String initialSelection = (String) selectionValues[0];
+            Object selection = JOptionPane.showInputDialog(null, "Selecione o usuario?",
+                    "SeguradoraAPP", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
+
+            return selection;
+        }
+
+//        public static NotaFiscal gerarNotaFiscal() {
+//            BigDecimal valor;
+//            // List que ira conter itens da nota
+//            List<Item> itensNota = new ArrayList<>();
+//
+//            Object opcaoSelecionada = chamaSelecaoProduto();
+//
+//            Produto produtoSelecionado = ProdutoDAO.findProdutoByDescricao((String) opcaoSelecionada);
+//            Item newItem = new ItemProduto(
+//                    1,
+//                    2 ,
+//                    new BigDecimal("10"),
+//                    new BigDecimal("10"),
+//                    new BigDecimal("10"),
+//                    TipoItem.PRODUTO,
+//                    produtoSelecionado
+//                    );
+//
+//            itensNota.add(newItem);
+//
+//            NotaFiscal nowNota = new NotaFiscal(
+//                    1
+//                    , new Date()
+//                    , TipoNota.ENTRADA
+//                    , 123456
+//                    , valor = new BigDecimal(123)
+//                    ,
+//            );
+//
+//            return nowNota;
+//        }
 
 
 

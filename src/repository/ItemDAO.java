@@ -20,7 +20,7 @@ public class ItemDAO {
     public static List<Item> buscarPorNome(String nome){
         List<Item> itensFiltrados = new ArrayList<>();
         for (Item item : itens) {
-            if(item.getDescricao().contains(nome)) {
+            if(item.getItem().getDescricao().contains(nome)) {
                 itensFiltrados.add(item);
             }
         }
@@ -32,7 +32,7 @@ public class ItemDAO {
         List<String> itemNomes = new ArrayList<>();
 
         for(Item item : itens){
-            itemNomes.add(item.getDescricao());
+            itemNomes.add(item.getItem().getDescricao());
         }
         return itemNomes.toArray();
     }
