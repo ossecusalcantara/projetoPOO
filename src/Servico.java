@@ -1,19 +1,21 @@
 package src;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class Servico {
+public class Servico implements ItemVendavel{
     private Integer id;
     private String descricao;
-    private LocalDateTime tempo;
+    private Date tempo;
     private BigDecimal valor;
 
-    public Servico(Integer id, String descricao, String tempo, BigDecimal valor) {
+    public Servico(Integer id, String descricao, String tempo, BigDecimal valor) throws ParseException {
         this.id = id;
         this.descricao = descricao;
-        DateTimeFormatter formatadorTempo = DateTimeFormatter.ofPattern("HH:mm:ss");
-        this.tempo = LocalDateTime.parse(tempo, formatadorTempo);
+        DateFormat formatador = new SimpleDateFormat("HH:mm");
+        this.tempo = formatador.parse(tempo);
         this.valor = valor;
     }
 
@@ -25,7 +27,7 @@ public class Servico {
         this.descricao = descricao;
     }
 
-    public void setTempo(LocalDateTime tempo) {
+    public void setTempo(Date tempo) {
         this.tempo = tempo;
     }
 
@@ -41,7 +43,7 @@ public class Servico {
         return descricao;
     }
 
-    public LocalDateTime getTempo() {
+    public Date getTempo() {
         return tempo;
     }
 

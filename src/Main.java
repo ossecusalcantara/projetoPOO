@@ -5,21 +5,23 @@ import src.repository.UsuarioDAO;
 
 import javax.swing.*;
 
+import java.text.ParseException;
+
 import static src.MainAdson.*;
 import static src.MainKaiana.cadastrarProduto;
 import static src.MainKaiana.cadastrarServico;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Object usuarioLogado = chamaSelecaoUsuario();
         checaSenhaUsuario(usuarioLogado);
 
     }
 
     //Função MenuPrincipal
-    public static void iniciarMenuPrincipal() {
+    public static void iniciarMenuPrincipal() throws ParseException {
         String[] opcoes;
-        opcoes = new String[]{"Cadastros", "Relatório",  "Minha Empresa","Sair"}; //Array com as opções de botões que ira aparecer
+        opcoes = new String[]{"Cadastros", "Ordem de Serviço", "Relatório",  "Gerar Nota Fiscal","Sair"}; //Array com as opções de botões que ira aparecer
 
         int resposta = JOptionPane.showOptionDialog(
                 null
@@ -39,8 +41,8 @@ public class Main {
             case 1: //Seguradoras
                 chamarMenuRelatorio();
                 break;
-            case 2: //Seguro
-                //chamarMenuMinhaEmpresa();
+            case 2: //Notas
+                //gerarNotaFiscal();
                 break;
             case 3: //SAIR
 
@@ -50,9 +52,9 @@ public class Main {
     }
 
     //Função com opções de Cadastro
-    public static void chamarMenuCadastros() {
+    public static void chamarMenuCadastros() throws ParseException {
         String[] opcoes;
-        opcoes = new String[]{"Cliente", "Produto", "Serviço","Sair"}; //Array com as opções de botões que ira aparecer
+        opcoes = new String[]{"Cliente", "Produto", "Serviço","Voltar"}; //Array com as opções de botões que ira aparecer
 
         int resposta = JOptionPane.showOptionDialog(
                 null
@@ -86,9 +88,9 @@ public class Main {
 
     }
 
-    public static void chamarMenuRelatorio() {
+    public static void chamarMenuRelatorio() throws ParseException {
         String[] opcoes;
-        opcoes = new String[]{"Cliente", "Produtos","Sair"}; //Array com as opções de botões que ira aparecer
+        opcoes = new String[]{"Cliente", "Produtos", "Serviço","Voltar"}; //Array com as opções de botões que ira aparecer
 
         int resposta = JOptionPane.showOptionDialog(
                 null
@@ -110,14 +112,18 @@ public class Main {
                 // chamaRelatorioProduto();
                 iniciarMenuPrincipal();
                 break;
-            case 2: //SAIR
+            case 2: // Cadastrar Produto
+                // chamaRelatorioProduto();
+                iniciarMenuPrincipal();
+                break;
+            case 3: //SAIR
                 iniciarMenuPrincipal();
                 break;
         }
 
     }
 
-    private static void checaSenhaUsuario(Object usuarioLogado) {
+    private static void checaSenhaUsuario(Object usuarioLogado) throws ParseException {
         String senhaDigitada = JOptionPane.showInputDialog(null, "Informe a senha do usuario (" + usuarioLogado + ")");
         Usuario usuarioByLogin = UsuarioDAO.findUsuarioByLogin((String) usuarioLogado);
 

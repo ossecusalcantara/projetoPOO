@@ -15,7 +15,7 @@ public class ServicoDAO {
         return servicos;
     }
 
-    public static List<Servico> buscarPorDescricao (String descricao) {
+    public static List<Servico> buscarPorDescricao(String descricao) {
         List<Servico> filtrado = new ArrayList<>();
         for (Servico servico : servicos) {
             if (servico.getDescricao().contains(descricao)) {

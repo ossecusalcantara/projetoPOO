@@ -1,0 +1,66 @@
+Index: src/ServicoDAO.java
+===================================================================
+diff --git a/src/ServicoDAO.java b/src/ServicoDAO.java
+deleted file mode 100644
+--- a/src/ServicoDAO.java	(revision 96268b4aee66dd726c31cc4a86b70a199801e716)
++++ /dev/null	(revision 96268b4aee66dd726c31cc4a86b70a199801e716)
+@@ -1,40 +0,0 @@
+-package src;
+-
+-import java.util.ArrayList;
+-import java.util.List;
+-
+-public class ServicoDAO {
+-    static List<Servico> servicos = new ArrayList<>();
+-
+-    public static void salvar(Servico servico) {
+-        servicos.add(servico);
+-    }
+-
+-    public static List<Servico> buscarTodos() {
+-        System.out.println(servicos);
+-        return servicos;
+-    }
+-
+-    public static List<Servico> buscarPorDescricao (String descricao) {
+-        List<Servico> filtrado = new ArrayList<>();
+-        for (Servico servico : servicos) {
+-            if (servico.getDescricao().contains(descricao)) {
+-                filtrado.add(servico);
+-            }
+-        }
+-
+-        return filtrado;
+-    }
+-
+-    public static Object[] findServicosInArray () {
+-        List<String> servicosNomes = new ArrayList<>();
+-
+-        for (Servico servico : servicos) {
+-            servicosNomes.add(servico.getDescricao());
+-        }
+-
+-        return servicosNomes.toArray();
+-    }
+-
+-
+-}
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_8\" default=\"true\" project-jdk-name=\"17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 96268b4aee66dd726c31cc4a86b70a199801e716)
++++ b/.idea/misc.xml	(date 1666651174814)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
