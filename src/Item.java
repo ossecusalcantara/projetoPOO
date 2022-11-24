@@ -1,9 +1,10 @@
 package src;
 import java.math.BigDecimal;
 
-public class Item {
+public abstract class Item {
     private Integer id;
     private Integer quantidade;
+
     private BigDecimal valorUnitario;
     private BigDecimal valorTotal;
     private BigDecimal desconto; //desconto total
@@ -18,44 +19,46 @@ public class Item {
         this.tipoItem = tipoItem;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public void setValorUnitario(BigDecimal valorUnitario) {
-        this.valorUnitario = valorUnitario;
-    }
-
-    public void setValorTotal(BigDecimal valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
-    public void setDesconto(BigDecimal desconto) {
-        this.desconto = desconto;
-    }
+    public abstract ItemVendavel getItem();
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getQuantidade() {
         return quantidade;
     }
 
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
     public BigDecimal getValorUnitario() {
         return valorUnitario;
+    }
+
+    public void setValorUnitario(BigDecimal valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
+    public BigDecimal getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
     public BigDecimal getDesconto() {
         return desconto;
     }
 
-    public BigDecimal getValorTotal() {
-        return valorTotal;
+    public void setDesconto(BigDecimal desconto) {
+        this.desconto = desconto;
     }
 
     public TipoItem getTipoItem() {
@@ -70,6 +73,5 @@ public class Item {
         valorTotal = (this.valorUnitario.multiply(BigDecimal.valueOf(quantidade)).subtract(desconto)) ;
         return valorTotal;
     }
-
 
 }

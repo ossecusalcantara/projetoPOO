@@ -1,6 +1,6 @@
-package src;
+package src.repository;
 
-import src.repository.ProdutoDAO;
+import src.NotaFiscal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class NotaFiscalDAO {
         return notasFiltradas;
     }
 
-    public static Object[] findListaProdutoInArray() {
+    public static Object[] findListaNotaInArray() {
         List<NotaFiscal> notas = NotaFiscalDAO.buscarTodos();
         List<Integer> notasNumero = new ArrayList<>();
 

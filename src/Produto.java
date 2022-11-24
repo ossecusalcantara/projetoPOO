@@ -1,6 +1,6 @@
 package src;
 
-public class Produto {
+public class Produto implements ItemVendavel {
     private Integer id;
     private String descricao;
     private String tipo;

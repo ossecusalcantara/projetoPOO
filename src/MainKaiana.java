@@ -2,11 +2,12 @@ package src;
 
 import javax.swing.*;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class MainKaiana {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         cadastrarProduto();
         cadastrarServico();
 
@@ -14,16 +15,16 @@ public class MainKaiana {
 
     public static Produto cadastrarProduto() {
 
-        Marca nowMarca = new Marca (
-                1,
-                JOptionPane.showInputDialog(null,"Marca: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE)
-        );
+//        Marca nowMarca = new Marca (
+//                1,
+//                JOptionPane.showInputDialog(null,"Marca: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE)
+//        );
 
         Produto nowProduto = new Produto (
                 1,
                 JOptionPane.showInputDialog(null,"Descrição: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE),
                 JOptionPane.showInputDialog(null,"Tipo: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE),
-                nowMarca
+                Marca.SAMSUNG
         );
 
         //Processo para adicionar estoque ass: Adson
@@ -37,7 +38,7 @@ public class MainKaiana {
 
     }
 
-    public static Servico cadastrarServico() {
+    public static Servico cadastrarServico() throws ParseException {
         BigDecimal valor;
         Servico nowServico = new Servico (
                 1,
