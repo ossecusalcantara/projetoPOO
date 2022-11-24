@@ -1,41 +1,42 @@
 package src.repository;
 
-import src.Cliente;
+import src.Estoque;
 import src.OrdemDeServico;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrdemDeServicoDAO {
-    static List<OrdemDeServico> ordens = new ArrayList<>();
+    static List<OrdemDeServico> ordemservico = new ArrayList<>();
 
-    public static void salvar(OrdemDeServico ordem) {
-        ordens.add(ordem);
+    public static void salvar(OrdemDeServico dadoservico) {
+        ordemservico.add(dadoservico);
     }
-
 
     public static List<OrdemDeServico> buscarTodos() {
-        System.out.println(ordens);
-        return ordens;
+        System.out.println(ordemservico);
+        return ordemservico;
     }
 
-    public static List<OrdemDeServico> buscarPorNome(String ordemID){
-        List<OrdemDeServico> ordensFiltrados = new ArrayList<>();
-        for (OrdemDeServico ordem : ordens) {
-            if(ordem.getId().equals(ordemID)) {
-                ordensFiltrados.add(ordem);
+    public static List<OrdemDeServico> buscarPorNome(String numero){
+        Integer numeroInt = Integer.parseInt(numero);
+        List<OrdemDeServico> servicoFiltrados = new ArrayList<>();
+        for (OrdemDeServico ordemservico : ordemservico) {
+            if(ordemservico.getId() == numeroInt) {
+                servicoFiltrados.add(ordemservico);
             }
         }
-        return  ordensFiltrados;
+        return servicoFiltrados;
     }
 
-    public static Object[] findOrdemInArray() {
-        List<OrdemDeServico> ordens = OrdemDeServicoDAO.buscarTodos();
-        List<Integer> ordensID = new ArrayList<>();
+    public static Object[] findListaEstoqueInArray() {
+        List<OrdemDeServico> ordemDeServicos = OrdemDeServicoDAO.buscarTodos();
+        List<Integer> servicoId = new ArrayList<>();
 
-        for(OrdemDeServico ordem : ordens) {
-            ordensID.add(ordem.getId());
+        for(OrdemDeServico ordemDeServico : ordemDeServicos) {
+            servicoId.add(ordemDeServico.getId());
         }
-        return ordensID.toArray();
+
+        return servicoId.toArray();
     }
 }
