@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d9e03b5-26a2-4381-92fb-4b0c259fe9af" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ItemProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ItemProduto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ItemServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ItemServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainAdson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainAdson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Marca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Marca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServicoDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/ItemDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ItemDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/ProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/ServicoDAO.java" beforeDir="false" />
-    </list>
+    <list default="true" id="7d9e03b5-26a2-4381-92fb-4b0c259fe9af" name="Changes" comment="Alterações 23/11" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,6 +97,21 @@
       <option name="presentableId" value="Default" />
       <updated>1665258489181</updated>
     </task>
+    <task id="LOCAL-00001" summary="Alterações 23/11">
+      <created>1669250072407</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669250072407</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Alterações 23/11">
+      <created>1669250272236</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669250272236</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,5 +124,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Alterações 23/11" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alterações 23/11" />
   </component>
 </project>

@@ -9,12 +9,25 @@ public class PessoaJuridica extends Pessoa{
     private LocalDate dataAbertura;
     private String cnae;
 
-    public PessoaJuridica(Integer id, String nome, Endereco endereco, String telefone, String email, String razaoSocial, String cnpj, String cnae, String dataAbertura) {
-        super(id, nome, endereco, telefone, email);
+    public PessoaJuridica( String nome, String telefone, String email, String razaoSocial, String cnpj, String cnae, String dataAbertura) {
+        super( nome, telefone, email);
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.cnae = cnae;
         //Conversor de Data em String para Local Date
+        DateTimeFormatter formatadorBarra = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.dataAbertura = LocalDate.parse(dataAbertura, formatadorBarra);
+    }
+
+    public PessoaJuridica( String nome, String telefone, String email, String razaoSocial, String cnpj, String cnae) {
+        super( nome, telefone, email);
+        this.razaoSocial = razaoSocial;
+        this.cnpj = cnpj;
+        this.cnae = cnae;
+    }
+
+    @Override
+    public void setData(String dataAbertura) {
         DateTimeFormatter formatadorBarra = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.dataAbertura = LocalDate.parse(dataAbertura, formatadorBarra);
     }

@@ -20,8 +20,8 @@ public class MainKaiana {
 //                JOptionPane.showInputDialog(null,"Marca: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE)
 //        );
 
+
         Produto nowProduto = new Produto (
-                1,
                 JOptionPane.showInputDialog(null,"Descrição: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE),
                 JOptionPane.showInputDialog(null,"Tipo: ", "Cadastro de Produto", JOptionPane.QUESTION_MESSAGE),
                 Marca.SAMSUNG
@@ -41,11 +41,24 @@ public class MainKaiana {
     public static Servico cadastrarServico() throws ParseException {
         BigDecimal valor;
         Servico nowServico = new Servico (
-                1,
-                JOptionPane.showInputDialog(null,"Descrição: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE),
-                JOptionPane.showInputDialog(null,"Tempo Médio: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE),
-                valor = new BigDecimal(JOptionPane.showInputDialog(null,"Valor: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE))
+                JOptionPane.showInputDialog(null,"Descrição: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE)
         );
+
+        try {
+            nowServico.setTempo(JOptionPane.showInputDialog(null,"Tempo Médio(HH:mm): ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE));
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(null,"Formato de tempo incorreto!!","Erro", JOptionPane.ERROR_MESSAGE);
+            nowServico.setTempo(JOptionPane.showInputDialog(null,"Tempo Médio(HH:mm): ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE));
+        }
+
+        try {
+            valor = new BigDecimal(JOptionPane.showInputDialog(null,"Valor: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE));
+            nowServico.setValor(valor);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"ERRO!!","Erro", JOptionPane.ERROR_MESSAGE);
+            valor = new BigDecimal(JOptionPane.showInputDialog(null,"Valor: ", "Cadastro de Serviço", JOptionPane.QUESTION_MESSAGE));
+            nowServico.setValor(valor);
+        }
 
         return nowServico;
     }

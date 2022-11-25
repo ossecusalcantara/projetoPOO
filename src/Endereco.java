@@ -10,6 +10,8 @@ public class Endereco {
     private String cidade;
     private String pais;
 
+    public Endereco() {}
+
     //Construtuor completo
     public Endereco(Integer id, String logradouro, Integer numero, String cep, String complemento, String bairro, String cidade, String pais) {
         this.id = id;
