@@ -1,20 +1,20 @@
 package src;
 import java.util.List;
 
-public class Pessoa {
+public abstract class Pessoa {
     private Integer id;
     private String nome;
     private Endereco endereco;
     private String telefone;
     private String email;
 
-    public Pessoa(Integer id, String nome, Endereco endereco, String telefone, String email) {
-        this.id = id;
+    public Pessoa( String nome, String telefone, String email) {
         this.nome = nome;
-        this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
     }
+
+    public void setData() {}
 
     public void setId(Integer id) {
         this.id = id;
@@ -55,6 +55,8 @@ public class Pessoa {
     public String getEmail() {
         return email;
     }
+
+    public abstract void setData(String dataNascimento);
 
     public String getDocumentoPrincipal(){
         return "";

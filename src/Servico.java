@@ -19,6 +19,10 @@ public class Servico implements ItemVendavel{
         this.valor = valor;
     }
 
+    public Servico( String descricao) throws ParseException {
+        this.descricao = descricao;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -27,8 +31,11 @@ public class Servico implements ItemVendavel{
         this.descricao = descricao;
     }
 
-    public void setTempo(Date tempo) {
-        this.tempo = tempo;
+    public void setTempo(Date tempo) { this.tempo = tempo;}
+
+    public void setTempo(String tempo) throws ParseException {
+        DateFormat formatador = new SimpleDateFormat("HH:mm");
+        this.tempo = formatador.parse(tempo);
     }
 
     public void setValor(BigDecimal valor) {

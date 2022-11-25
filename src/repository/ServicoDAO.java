@@ -7,6 +7,7 @@ public class ServicoDAO {
     static List<Servico> servicos = new ArrayList<>();
 
     public static void salvar(Servico servico) {
+        servico.setId(servicos.size() + 1);
         servicos.add(servico);
     }
 

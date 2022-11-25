@@ -14,11 +14,17 @@ public class ProdutoDAO {
     public static List<Produto> findUProdutos() {
         List<Produto> produtoList = new ArrayList<>();
 
-        Produto produto1 = new Produto(1, "Celular", "Smarthphone", Marca.SAMSUNG);
-        Produto produto2 = new Produto(2, "Celular", "Smarthphone", Marca.SAMSUNG);
-        Produto produto3 = new Produto(3, "Celular", "Smarthphone", Marca.SAMSUNG);
-        Produto produto4 = new Produto(4, "Celular", "Smarthphone", Marca.SAMSUNG);
-        Produto produto5 = new Produto(5, "Celular", "Smarthphone", Marca.SAMSUNG);
+        Produto produto1 = new Produto( "Celular", "Smarthphone", Marca.SAMSUNG);
+        produto1.setId(1);
+        Produto produto2 = new Produto( "Celular", "Smarthphone", Marca.SAMSUNG);
+        produto2.setId(2);
+        Produto produto3 = new Produto( "Celular", "Smarthphone", Marca.SAMSUNG);
+        produto3.setId(3);
+        Produto produto4 = new Produto( "Celular", "Smarthphone", Marca.SAMSUNG);
+        produto4.setId(4);
+        Produto produto5 = new Produto( "Celular", "Smarthphone", Marca.SAMSUNG);
+        produto5.setId(5);
+
         produtoList.add(produto1);
         produtoList.add(produto2);
         produtoList.add(produto3);
@@ -29,6 +35,7 @@ public class ProdutoDAO {
     }
 
     public static void salvar(Produto produto) {
+        produto.setId(produtos.size() + 1);
         produtos.add(produto);
     }
 

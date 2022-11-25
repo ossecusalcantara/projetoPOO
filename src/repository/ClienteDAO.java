@@ -8,12 +8,16 @@ public class ClienteDAO {
     static  List<Cliente> clientes = new ArrayList<>();
 
     public static void salvar(Cliente cliente) {
+
+        cliente.getPessoa().setId(clientes.size() + 1);
         clientes.add(cliente);
     }
 
 
     public static List<Cliente> buscarTodos() {
         System.out.println(clientes);
+
+
         return clientes;
     }
 

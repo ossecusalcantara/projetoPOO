@@ -26,7 +26,7 @@ public class Main {
         int resposta = JOptionPane.showOptionDialog(
                 null
                 , "Escolha uma opção:" // Mensagem
-                , "Inicio"  // Titulo
+                , "Menu"  // Titulo
                 , JOptionPane.YES_NO_OPTION // Estilo da caixinha que ira aparecer
                 , JOptionPane.PLAIN_MESSAGE
                 , null // Icone. Você pode usar uma imagem se quiser, basta carrega-la e passar como referência/Endereço da pasta
@@ -38,11 +38,11 @@ public class Main {
             case 0:
                 chamarMenuCadastros();
                 break;
-            case 1: //Seguradoras
-                chamarMenuRelatorio();
+            case 1: //Ordem de Serviço
+                //chamarMenuRelatorio();
                 break;
-            case 2: //Notas
-                //gerarNotaFiscal();
+            case 2: //Relatorios
+                chamarMenuRelatorio();
                 break;
             case 3: //SAIR
 
@@ -124,7 +124,7 @@ public class Main {
     }
 
     private static void checaSenhaUsuario(Object usuarioLogado) throws ParseException {
-        String senhaDigitada = JOptionPane.showInputDialog(null, "Informe a senha do usuario (" + usuarioLogado + ")");
+        String senhaDigitada = JOptionPane.showInputDialog(null, "Digite a senha (" + usuarioLogado + ")", "Login", JOptionPane.QUESTION_MESSAGE);
         Usuario usuarioByLogin = UsuarioDAO.findUsuarioByLogin((String) usuarioLogado);
 
         if (usuarioByLogin.getSenha().equals(senhaDigitada)) {
@@ -138,8 +138,8 @@ public class Main {
     private static Object chamaSelecaoUsuario() {
         Object[] selectionValues = UsuarioDAO.findUsuariosSistemaInArray();
         String initialSelection = (String) selectionValues[0];
-        Object selection = JOptionPane.showInputDialog(null, "Selecione o usuario?",
-                "SeguradoraAPP", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
+        Object selection = JOptionPane.showInputDialog(null, "Selecione o usúario:",
+                "Login", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
         return selection;
     }
 }

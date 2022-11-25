@@ -6,8 +6,9 @@ public class Produto implements ItemVendavel {
     private String tipo;
     private Marca marca;
 
-    public Produto(Integer id, String descricao, String tipo, Marca marca) {
-        this.id = id;
+    public Produto() {}
+
+    public Produto( String descricao, String tipo, Marca marca) {
         this.descricao = descricao;
         this.tipo = tipo;
         this.marca = marca;
