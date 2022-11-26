@@ -14,23 +14,6 @@ public class ProdutoDAO {
     public static List<Produto> findUProdutos() {
         List<Produto> produtoList = new ArrayList<>();
 
-        Produto produto1 = new Produto( "Celular", "Smarthphone", Marca.SAMSUNG);
-        produto1.setId(1);
-        Produto produto2 = new Produto( "Celular", "Smarthphone", Marca.SAMSUNG);
-        produto2.setId(2);
-        Produto produto3 = new Produto( "Celular", "Smarthphone", Marca.SAMSUNG);
-        produto3.setId(3);
-        Produto produto4 = new Produto( "Celular", "Smarthphone", Marca.SAMSUNG);
-        produto4.setId(4);
-        Produto produto5 = new Produto( "Celular", "Smarthphone", Marca.SAMSUNG);
-        produto5.setId(5);
-
-        produtoList.add(produto1);
-        produtoList.add(produto2);
-        produtoList.add(produto3);
-        produtoList.add(produto4);
-        produtoList.add(produto5);
-
         return produtoList;
     }
 
@@ -58,7 +41,7 @@ public class ProdutoDAO {
         List<Produto> produtos = buscarTodos();
 
         for (Produto produto : produtos) {
-            if (busca.equals(produto)) {
+            if (busca.equals(produto.getDescricao())) {
                 return produto;
             }
         }
@@ -74,6 +57,25 @@ public class ProdutoDAO {
         }
 
         return produtoNomes.toArray();
+    }
+
+    public static void IniciarDadosProduto() {
+        Produto produto1 = new Produto( "Galaxy s20", 10, Marca.SAMSUNG);
+        produto1.setId(1);
+        Produto produto2 = new Produto( "SmarthWatch", 10, Marca.LG);
+        produto2.setId(2);
+        Produto produto3 = new Produto( "iPhone", 10, Marca.APPLE);
+        produto3.setId(3);
+        Produto produto4 = new Produto( "Edge 20", 10, Marca.MOTOROLLA);
+        produto4.setId(4);
+        Produto produto5 = new Produto( "Honor x-8", 10, Marca.HUAWEI);
+        produto5.setId(5);
+
+        ProdutoDAO.salvar(produto1);
+        ProdutoDAO.salvar(produto2);
+        ProdutoDAO.salvar(produto3);
+        ProdutoDAO.salvar(produto4);
+        ProdutoDAO.salvar(produto5);
     }
 
 }

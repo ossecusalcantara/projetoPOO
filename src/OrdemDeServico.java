@@ -1,31 +1,48 @@
 package src;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrdemDeServico {
     private Integer id;
     private LocalDate dataEntrada;
     private LocalDate dataLimite;
+    private String titulo;
     private String condicao;
-    private List<Item> itens;
+    private List<Item> itens = new ArrayList<>();
     private BigDecimal valorTotal;
 
-    public OrdemDeServico(Integer id, LocalDate dataEntrada, LocalDate dataLimite, String condicao, List<ItemProduto> itensProdutos, List<Item> itens, BigDecimal valorTotal) {
-        this.id = id;
-        this.dataEntrada = dataEntrada;
-        this.dataLimite = dataLimite;
+    public OrdemDeServico(){}
+
+    public OrdemDeServico( String dataEntrada, String dataLimite, String condicao, List<Item> itensOrdem, BigDecimal valorTotal) {
+        DateTimeFormatter formatadorBarra = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.dataEntrada = LocalDate.parse(dataEntrada, formatadorBarra);
+        this.dataLimite = LocalDate.parse(dataLimite, formatadorBarra);
         this.condicao = condicao;
-        this.itens = itens;
-        this.valorTotal = calculaValorTotalProdutos(itensProdutos);
+        this.valorTotal = calculaValorTotalProdutos(itensOrdem);
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
+    public void setDataFormatada(String data, int tipoData) {
+        DateTimeFormatter formatadorBarra = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        if(tipoData == 1) {
+            this.dataEntrada = LocalDate.parse(data, formatadorBarra);
+        } else {
+            this.dataLimite = LocalDate.parse(data, formatadorBarra);
+        }
+    }
+
     public void setDataEntrada(LocalDate dataEntrada) {
         this.dataEntrada = dataEntrada;
+    }
+
+    public void setItemAdd(Item item) {
+        itens.add(item);
     }
 
     public void setDataLimite(LocalDate dataLimite) {
@@ -68,9 +85,25 @@ public class OrdemDeServico {
         return valorTotal;
     }
 
-    private BigDecimal calculaValorTotalProdutos(List<ItemProduto> itensProdutos) {
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public List<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
+    }
+
+    private BigDecimal calculaValorTotalProdutos(List<Item> itensOrdem) {
         BigDecimal somaValorTotalProdutos = BigDecimal.valueOf(0);
-        for (ItemProduto valorTotal : itensProdutos){
+        for (Item valorTotal : itensOrdem){
             somaValorTotalProdutos = somaValorTotalProdutos.add(valorTotal.getValorTotal());
         }
         return somaValorTotalProdutos;

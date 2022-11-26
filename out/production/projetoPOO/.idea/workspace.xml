@@ -4,7 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d9e03b5-26a2-4381-92fb-4b0c259fe9af" name="Changes" comment="Alterações 23/11" />
+    <list default="true" id="7d9e03b5-26a2-4381-92fb-4b0c259fe9af" name="Changes" comment="Alterações 23/11">
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/MainAdson.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/MainAdson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/MinhaEmpresa.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/MinhaEmpresa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/Pessoa.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/Pessoa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/PessoaFisica.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/PessoaJuridica.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/PessoaJuridica.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/Servico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/Servico.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/ServicoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/ClienteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/ClienteDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/OrdemDeServicoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/OrdemDeServicoDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/ProdutoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ItemProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ItemProduto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ItemServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ItemServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainAdson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFuncoesCadastro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainKaiana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainKaiana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Marca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Marca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MinhaEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MinhaEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrdemDeServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrdemDeServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PessoaFisica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PessoaFisica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PessoaJuridica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PessoaJuridica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/ClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ClienteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/OrdemDeServicoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/OrdemDeServicoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/ProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ProdutoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/ServicoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ServicoDAO.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,13 +45,21 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -33,16 +72,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ProjectsIntelliJ_Aulas/ProjetoExemplo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.Main" />
+  <component name="RunManager" selected="Application.AppMain">
+    <configuration name="AppFuncoesCadastro" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.AppFuncoesCadastro" />
       <module name="projetoPOO" />
       <extension name="coverage">
         <pattern>
@@ -54,8 +93,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainAdson" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.MainAdson" />
+    <configuration name="AppMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.AppMain" />
       <module name="projetoPOO" />
       <extension name="coverage">
         <pattern>
@@ -82,9 +121,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.AppMain" />
+        <item itemvalue="Application.AppFuncoesCadastro" />
         <item itemvalue="Application.MainKaiana" />
-        <item itemvalue="Application.MainAdson" />
       </list>
     </recent_temporary>
   </component>
@@ -111,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669250272236</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Alterações 23/11">
+      <created>1669390743503</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669390743503</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

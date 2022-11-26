@@ -1,5 +1,10 @@
-package src;
+package src.repository;
 
+import src.Produto;
+import src.Servico;
+
+import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,5 +42,37 @@ public class ServicoDAO {
         return servicosNomes.toArray();
     }
 
+    public static Servico findServicoByDescricao(String busca) {
+        List<Servico> servicos = buscarTodos();
 
+        for (Servico servico : servicos) {
+            if (busca.equals(servico.getDescricao())) {
+                return servico;
+            }
+        }
+        return null;
+    }
+
+    public static Object[] findListaServicoInArray() {
+        List<Servico> servicos = ServicoDAO.buscarTodos();
+        List<String> servicoNomes = new ArrayList<>();
+
+        for(Servico servico : servicos) {
+            servicoNomes.add(servico.getDescricao());
+        }
+
+        return servicoNomes.toArray();
+    }
+
+    public static void iniciarDadosServico() throws ParseException {
+        Servico servico1 = new Servico("Manutenção", "01:30", new BigDecimal(100.00));
+        Servico servico2 = new Servico("Limpeza", "01:00", new BigDecimal(100.00));
+        Servico servico3 = new Servico("Formatação", "01:00", new BigDecimal(100.00));
+        Servico servico4 = new Servico("Troca de Peça", "02:00", new BigDecimal(200.00));
+
+        ServicoDAO.salvar(servico1);
+        ServicoDAO.salvar(servico2);
+        ServicoDAO.salvar(servico3);
+        ServicoDAO.salvar(servico4);
+    }
 }

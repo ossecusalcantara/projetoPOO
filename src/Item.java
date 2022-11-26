@@ -4,11 +4,12 @@ import java.math.BigDecimal;
 public abstract class Item {
     private Integer id;
     private Integer quantidade;
-
     private BigDecimal valorUnitario;
     private BigDecimal valorTotal;
     private BigDecimal desconto; //desconto total
     private TipoItem tipoItem;
+
+    public Item() {}
 
     public Item(Integer id, Integer quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, BigDecimal desconto, TipoItem tipoItem) {
         this.id = id;

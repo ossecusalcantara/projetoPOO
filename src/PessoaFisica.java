@@ -7,6 +7,7 @@ public class PessoaFisica extends Pessoa{
     private String cpf;
     private LocalDate dataDeNascimento;
 
+    public PessoaFisica() {}
 
     public PessoaFisica( String nome, String telefone, String email, String cpf, String dataNascimento) {
         super( nome, telefone, email);
