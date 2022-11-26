@@ -2,6 +2,7 @@ package src.repository;
 
 import src.Estoque;
 import src.OrdemDeServico;
+import src.Servico;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +32,25 @@ public class OrdemDeServicoDAO {
         return servicoFiltrados;
     }
 
-    public static Object[] findListaEstoqueInArray() {
+    public static OrdemDeServico findOsByTitulo(String busca) {
+        List<OrdemDeServico> ordens = buscarTodos();
+
+        for (OrdemDeServico os : ordens) {
+            if (busca.equals(os.getTitulo())) {
+                return os;
+            }
+        }
+        return null;
+    }
+
+    public static Object[] findListaOsInArray() {
         List<OrdemDeServico> ordemDeServicos = OrdemDeServicoDAO.buscarTodos();
-        List<Integer> servicoId = new ArrayList<>();
+        List<String> servicoTitulo = new ArrayList<>();
 
         for(OrdemDeServico ordemDeServico : ordemDeServicos) {
-            servicoId.add(ordemDeServico.getId());
+            servicoTitulo.add(ordemDeServico.getTitulo());
         }
 
-        return servicoId.toArray();
+        return servicoTitulo.toArray();
     }
 }

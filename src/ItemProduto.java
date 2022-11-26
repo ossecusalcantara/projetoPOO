@@ -13,12 +13,6 @@ public class ItemProduto extends Item{
         this.produto = produto;
     }
 
-
-    public Produto setItem(Produto produto) {
-        this.produto = produto;
-        return produto;
-    }
-
     public ItemVendavel getProduto() {
         return produto;
     }

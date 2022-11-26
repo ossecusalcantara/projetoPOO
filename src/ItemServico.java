@@ -26,8 +26,4 @@ public class ItemServico extends Item{
     }
 
 
-    public Servico setItem(Servico servico) {
-        this.servico = servico;
-        return servico;
-    }
 }

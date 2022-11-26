@@ -2,15 +2,19 @@ package src;
 import src.form.RelatorioPessoaForm;
 import src.form.RelatorioProdutoForm;
 import src.repository.ClienteDAO;
+import src.repository.OrdemDeServicoDAO;
 import src.repository.ProdutoDAO;
 import src.repository.ServicoDAO;
 
 import javax.swing.*;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 import static src.AppMain.iniciarMenuPrincipal;
 
@@ -196,7 +200,7 @@ public class AppFuncoesCadastro {
                         Servico servico = ServicoDAO.findServicoByDescricao((String) ServicoSelecionado);
                         ItemServico nowItemS = new ItemServico();
                         nowItemS.setValorTotal(servico.getValor());
-                        nowItemS.setItem(servico);
+                        nowItemS.setServico(servico);
                         nowOrdem.setItemAdd(nowItemS);
                         break;
                     case 1: //Adicionando Produto
@@ -206,7 +210,7 @@ public class AppFuncoesCadastro {
                         nowItemP.setValorUnitario(new BigDecimal(JOptionPane.showInputDialog(null,"Valor Unitario: ", "Cadastro de OS", JOptionPane.QUESTION_MESSAGE)));
                         BigDecimal qtd = new BigDecimal(nowItemP.getQuantidade());
                         nowItemP.setValorTotal(qtd.multiply(nowItemP.getValorUnitario()));
-                        nowItemP.setItem(ProdutoDAO.findProdutoByDescricao((String) produtoSelecionado));
+                        nowItemP.setProduto(ProdutoDAO.findProdutoByDescricao((String) produtoSelecionado));
                         nowOrdem.setItemAdd(nowItemP);
                         break;
                     case 2: //SAIR
@@ -237,7 +241,35 @@ public class AppFuncoesCadastro {
             return nowOrdem;
         }
 
+        public static NotaFiscal gerarNotaFiscal() {
+            Random random = new Random();
+            NotaFiscal nowNota = new NotaFiscal();
+
+            Object ServicoSelecionado = chamaSelecaoOS();
+            OrdemDeServico nowOS = OrdemDeServicoDAO.findOsByTitulo((String) ServicoSelecionado);
+            nowNota.setDataEmissao(LocalDate.now());
+            nowNota.setTipoNota(TipoNota.SAIDA);
+            //Gerar número da nota
+                LocalDate localDate = LocalDate.now();
+                Date date = Date.valueOf(localDate);
+                SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+                String data = format.format(date);
+                Integer numeroDaNota = Integer.parseInt(data) + random.nextInt(10);
+
+            nowNota.setNumeroNota(numeroDaNota);
+
+            return nowNota;
+        }
+
         //Funões para esolher opções
+        private static Object chamaSelecaoOS() {
+            Object[] selectionValues = OrdemDeServicoDAO.findListaOsInArray();
+            String initialSelection = (String) selectionValues[0];
+            Object selection = JOptionPane.showInputDialog(null, "Selecione a OS: ",
+                    "Gerar Nota Fiscal", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
+            return selection;
+        }
+
         private static Object chamaSelecaoServico() {
             Object[] selectionValues = ServicoDAO.findListaServicoInArray();
             String initialSelection = (String) selectionValues[0];
@@ -292,65 +324,9 @@ public class AppFuncoesCadastro {
             RelatorioProdutoForm.emitirRelatorioProduto(produtos);
         }
 
-//        public static PessoaJuridica cadastrarMinhaEmprea() {
-//        //Função para cadastrar a empresa em que o sistema esta sendo usado
-//
-//            Endereco nowEndereco = new Endereco(
-//                    1, //ID por default 1 pois não sei como será incrementa os id's
-//                    JOptionPane.showInputDialog(null,"Rua: ", "Cadastro de Endereço", JOptionPane.QUESTION_MESSAGE),
-//                    Integer.parseInt(JOptionPane.showInputDialog(null,"Número: ","Cadastro de Endereço", JOptionPane.QUESTION_MESSAGE)),
-//                    JOptionPane.showInputDialog(null,"Bairro: ","Cadastro de Endereço", JOptionPane.QUESTION_MESSAGE),
-//                    JOptionPane.showInputDialog(null,"Cidade: ","Cadastro de Endereço", JOptionPane.QUESTION_MESSAGE),
-//                    JOptionPane.showInputDialog(null,"CEP: ","Cadastro de Endereço", JOptionPane.QUESTION_MESSAGE)
-//            );
-//
-//            PessoaJuridica nowPessoa = new PessoaJuridica(
-//                    1
-//                    , JOptionPane.showInputDialog(null,"Nome: ", "Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , nowEndereco
-//                    , JOptionPane.showInputDialog(null,"Telefone: ", "Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , JOptionPane.showInputDialog(null,"E-mail: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , JOptionPane.showInputDialog(null,"Razão Social: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , JOptionPane.showInputDialog(null,"CNPJ: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , JOptionPane.showInputDialog(null,"CENAE: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , JOptionPane.showInputDialog(null,"Data de Abertura: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//            );
-//
-//            return nowPessoa;
-//        }
 
 
-//        public static NotaFiscal gerarNotaFiscal() {
-//            BigDecimal valor;
-//            // List que ira conter itens da nota
-//            List<Item> itensNota = new ArrayList<>();
-//
-//            Object opcaoSelecionada = chamaSelecaoProduto();
-//
-//            Produto produtoSelecionado = ProdutoDAO.findProdutoByDescricao((String) opcaoSelecionada);
-//            Item newItem = new ItemProduto(
-//                    1,
-//                    2 ,
-//                    new BigDecimal("10"),
-//                    new BigDecimal("10"),
-//                    new BigDecimal("10"),
-//                    TipoItem.PRODUTO,
-//                    produtoSelecionado
-//                    );
-//
-//            itensNota.add(newItem);
-//
-//            NotaFiscal nowNota = new NotaFiscal(
-//                    1
-//                    , new Date()
-//                    , TipoNota.ENTRADA
-//                    , 123456
-//                    , valor = new BigDecimal(123)
-//                    ,
-//            );
-//
-//            return nowNota;
-//        }
+
 
 
 

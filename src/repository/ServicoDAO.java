@@ -32,7 +32,7 @@ public class ServicoDAO {
         return filtrado;
     }
 
-    public static Object[] findServicosInArray () {
+    public static Object[] findServicosInArray() {
         List<String> servicosNomes = new ArrayList<>();
 
         for (Servico servico : servicos) {
