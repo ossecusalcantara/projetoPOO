@@ -1,25 +1,26 @@
 package src;
 
-import src.repository.ClienteDAO;
-import src.repository.UsuarioDAO;
+import src.repository.*;
 
 import javax.swing.*;
 
 import java.text.ParseException;
 
-import static src.MainAdson.*;
-import static src.MainKaiana.cadastrarProduto;
-import static src.MainKaiana.cadastrarServico;
+import static src.AppFuncoesCadastro.*;
 
-public class Main {
-    public static void main(String[] args) throws ParseException {
+public class AppMain {
+    public static void main(String[] args) throws ParseException, ClassNotFoundException {
         Object usuarioLogado = chamaSelecaoUsuario();
         checaSenhaUsuario(usuarioLogado);
 
     }
 
     //Função MenuPrincipal
-    public static void iniciarMenuPrincipal() throws ParseException {
+    public static void iniciarMenuPrincipal() throws ParseException, ClassNotFoundException {
+        ClienteDAO.iniciarDadosCliente();
+        ProdutoDAO.IniciarDadosProduto();
+        ServicoDAO.iniciarDadosServico();
+
         String[] opcoes;
         opcoes = new String[]{"Cadastros", "Ordem de Serviço", "Relatório",  "Gerar Nota Fiscal","Sair"}; //Array com as opções de botões que ira aparecer
 
@@ -39,20 +40,25 @@ public class Main {
                 chamarMenuCadastros();
                 break;
             case 1: //Ordem de Serviço
-                //chamarMenuRelatorio();
+                OrdemDeServico servico = cadastrarOS();
+                OrdemDeServicoDAO.salvar(servico);
+                iniciarMenuPrincipal();
                 break;
             case 2: //Relatorios
                 chamarMenuRelatorio();
                 break;
-            case 3: //SAIR
-
+            case 3: //Relatorios
+                //chamarGerarNotaFical();
+                break;
+            case 4: //SAIR
+                System.exit(0);
                 break;
         }
 
     }
 
     //Função com opções de Cadastro
-    public static void chamarMenuCadastros() throws ParseException {
+    public static void chamarMenuCadastros() throws ParseException, ClassNotFoundException {
         String[] opcoes;
         opcoes = new String[]{"Cliente", "Produto", "Serviço","Voltar"}; //Array com as opções de botões que ira aparecer
 
@@ -73,12 +79,12 @@ public class Main {
               break;
             case 1: // Cadastrar Produto
                     Produto produto = cadastrarProduto();
-                    //ProdutoDAO.salvar(produto)
+                    ProdutoDAO.salvar(produto);
                     iniciarMenuPrincipal();
                 break;
             case 2: // Cadastro de Serviço
                     Servico servico = cadastrarServico();
-                    src.ServicoDAO.salvar(servico);
+                    ServicoDAO.salvar(servico);
                     iniciarMenuPrincipal();
                 break;
             case 3: //SAIR
@@ -88,7 +94,7 @@ public class Main {
 
     }
 
-    public static void chamarMenuRelatorio() throws ParseException {
+    public static void chamarMenuRelatorio() throws  ClassNotFoundException, ParseException {
         String[] opcoes;
         opcoes = new String[]{"Cliente", "Produtos", "Serviço","Voltar"}; //Array com as opções de botões que ira aparecer
 
@@ -109,11 +115,11 @@ public class Main {
                 iniciarMenuPrincipal();
                 break;
             case 1: // Cadastrar Produto
-                // chamaRelatorioProduto();
+                chamaRelatorioProduto();
                 iniciarMenuPrincipal();
                 break;
             case 2: // Cadastrar Produto
-                // chamaRelatorioProduto();
+                // chamaRelatorioServico();
                 iniciarMenuPrincipal();
                 break;
             case 3: //SAIR
@@ -123,7 +129,7 @@ public class Main {
 
     }
 
-    private static void checaSenhaUsuario(Object usuarioLogado) throws ParseException {
+    private static void checaSenhaUsuario(Object usuarioLogado) throws ParseException, ClassNotFoundException {
         String senhaDigitada = JOptionPane.showInputDialog(null, "Digite a senha (" + usuarioLogado + ")", "Login", JOptionPane.QUESTION_MESSAGE);
         Usuario usuarioByLogin = UsuarioDAO.findUsuarioByLogin((String) usuarioLogado);
 

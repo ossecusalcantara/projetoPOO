@@ -10,6 +10,8 @@ public class OrdemDeServicoDAO {
     static List<OrdemDeServico> ordemservico = new ArrayList<>();
 
     public static void salvar(OrdemDeServico dadoservico) {
+
+        dadoservico.setId(ordemservico.size() +1);
         ordemservico.add(dadoservico);
     }
 

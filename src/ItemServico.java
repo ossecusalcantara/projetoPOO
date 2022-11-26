@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 public class ItemServico extends Item{
     private ItemVendavel servico;
 
+    public ItemServico() {}
+
     public ItemServico(Integer id, Integer quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, BigDecimal desconto, TipoItem tipoItem, Servico servico) {
         super(id, quantidade, valorUnitario, valorTotal, desconto, TipoItem.SERVICO);
         this.servico = servico;
@@ -20,6 +22,12 @@ public class ItemServico extends Item{
 
     @Override
     public ItemVendavel getItem() {
+        return servico;
+    }
+
+
+    public Servico setItem(Servico servico) {
+        this.servico = servico;
         return servico;
     }
 }
