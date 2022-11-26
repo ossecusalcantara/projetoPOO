@@ -1,16 +1,22 @@
 package src;
 
-public class Produto {
+public class Produto implements ItemVendavel {
     private Integer id;
     private String descricao;
-    private String tipo;
+    private Integer quantidade;
     private Marca marca;
 
-    public Produto(Integer id, String descricao, String tipo, Marca marca) {
-        this.id = id;
+    public Produto() {}
+
+    public Produto( String descricao, Integer quantidade) {
         this.descricao = descricao;
-        this.tipo = tipo;
+        this.quantidade = quantidade;
+    }
+
+    public Produto( String descricao, Integer quantidade, Marca marca) {
+        this.descricao = descricao;
         this.marca = marca;
+        this.quantidade = quantidade;
     }
 
     public void setId(Integer id) {
@@ -19,10 +25,6 @@ public class Produto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public void setMarca(Marca marca) {
@@ -37,11 +39,15 @@ public class Produto {
         return descricao;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
     public Marca getMarca() {
         return marca;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 }

@@ -1,27 +1,10 @@
 package src;
 
-public class Marca {
-    private Integer id;
-    private String marca;
-
-    public Marca(Integer id, String marca) {
-        this.id = id;
-        this.marca = marca;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
+public enum Marca {
+    SAMSUNG, // Codigo: 01
+    LG,  // Codigo: 02
+    APPLE,  // Codigo: 03
+    XIAOMI,  // Codigo: 04
+    HUAWEI,  // Codigo: 05
+    MOTOROLLA  // Codigo: 06
 }

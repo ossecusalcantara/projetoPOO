@@ -1,30 +1,33 @@
 package src;
 
-import src.repository.ClienteDAO;
-import src.repository.UsuarioDAO;
+import src.repository.*;
 
 import javax.swing.*;
 
-import static src.MainAdson.*;
-import static src.MainKaiana.cadastrarProduto;
-import static src.MainKaiana.cadastrarServico;
+import java.text.ParseException;
 
-public class Main {
-    public static void main(String[] args) {
+import static src.AppFuncoesCadastro.*;
+
+public class AppMain {
+    public static void main(String[] args) throws ParseException, ClassNotFoundException {
         Object usuarioLogado = chamaSelecaoUsuario();
         checaSenhaUsuario(usuarioLogado);
 
     }
 
     //Função MenuPrincipal
-    public static void iniciarMenuPrincipal() {
+    public static void iniciarMenuPrincipal() throws ParseException, ClassNotFoundException {
+        ClienteDAO.iniciarDadosCliente();
+        ProdutoDAO.IniciarDadosProduto();
+        ServicoDAO.iniciarDadosServico();
+
         String[] opcoes;
-        opcoes = new String[]{"Cadastros", "Relatório",  "Minha Empresa","Sair"}; //Array com as opções de botões que ira aparecer
+        opcoes = new String[]{"Cadastros", "Ordem de Serviço", "Relatório",  "Gerar Nota Fiscal","Sair"}; //Array com as opções de botões que ira aparecer
 
         int resposta = JOptionPane.showOptionDialog(
                 null
                 , "Escolha uma opção:" // Mensagem
-                , "Inicio"  // Titulo
+                , "Menu"  // Titulo
                 , JOptionPane.YES_NO_OPTION // Estilo da caixinha que ira aparecer
                 , JOptionPane.PLAIN_MESSAGE
                 , null // Icone. Você pode usar uma imagem se quiser, basta carrega-la e passar como referência/Endereço da pasta
@@ -36,23 +39,28 @@ public class Main {
             case 0:
                 chamarMenuCadastros();
                 break;
-            case 1: //Seguradoras
+            case 1: //Ordem de Serviço
+                OrdemDeServico servico = cadastrarOS();
+                OrdemDeServicoDAO.salvar(servico);
+                iniciarMenuPrincipal();
+                break;
+            case 2: //Relatorios
                 chamarMenuRelatorio();
                 break;
-            case 2: //Seguro
-                //chamarMenuMinhaEmpresa();
+            case 3: //Relatorios
+                //chamarGerarNotaFical();
                 break;
-            case 3: //SAIR
-
+            case 4: //SAIR
+                System.exit(0);
                 break;
         }
 
     }
 
     //Função com opções de Cadastro
-    public static void chamarMenuCadastros() {
+    public static void chamarMenuCadastros() throws ParseException, ClassNotFoundException {
         String[] opcoes;
-        opcoes = new String[]{"Cliente", "Produto", "Serviço","Sair"}; //Array com as opções de botões que ira aparecer
+        opcoes = new String[]{"Cliente", "Produto", "Serviço","Voltar"}; //Array com as opções de botões que ira aparecer
 
         int resposta = JOptionPane.showOptionDialog(
                 null
@@ -71,12 +79,12 @@ public class Main {
               break;
             case 1: // Cadastrar Produto
                     Produto produto = cadastrarProduto();
-                    //ProdutoDAO.salvar(produto)
+                    ProdutoDAO.salvar(produto);
                     iniciarMenuPrincipal();
                 break;
             case 2: // Cadastro de Serviço
                     Servico servico = cadastrarServico();
-                    src.ServicoDAO.salvar(servico);
+                    ServicoDAO.salvar(servico);
                     iniciarMenuPrincipal();
                 break;
             case 3: //SAIR
@@ -86,9 +94,9 @@ public class Main {
 
     }
 
-    public static void chamarMenuRelatorio() {
+    public static void chamarMenuRelatorio() throws  ClassNotFoundException, ParseException {
         String[] opcoes;
-        opcoes = new String[]{"Cliente", "Produtos","Sair"}; //Array com as opções de botões que ira aparecer
+        opcoes = new String[]{"Cliente", "Produtos", "Serviço","Voltar"}; //Array com as opções de botões que ira aparecer
 
         int resposta = JOptionPane.showOptionDialog(
                 null
@@ -107,18 +115,22 @@ public class Main {
                 iniciarMenuPrincipal();
                 break;
             case 1: // Cadastrar Produto
-                // chamaRelatorioProduto();
+                chamaRelatorioProduto();
                 iniciarMenuPrincipal();
                 break;
-            case 2: //SAIR
+            case 2: // Cadastrar Produto
+                // chamaRelatorioServico();
+                iniciarMenuPrincipal();
+                break;
+            case 3: //SAIR
                 iniciarMenuPrincipal();
                 break;
         }
 
     }
 
-    private static void checaSenhaUsuario(Object usuarioLogado) {
-        String senhaDigitada = JOptionPane.showInputDialog(null, "Informe a senha do usuario (" + usuarioLogado + ")");
+    private static void checaSenhaUsuario(Object usuarioLogado) throws ParseException, ClassNotFoundException {
+        String senhaDigitada = JOptionPane.showInputDialog(null, "Digite a senha (" + usuarioLogado + ")", "Login", JOptionPane.QUESTION_MESSAGE);
         Usuario usuarioByLogin = UsuarioDAO.findUsuarioByLogin((String) usuarioLogado);
 
         if (usuarioByLogin.getSenha().equals(senhaDigitada)) {
@@ -132,8 +144,8 @@ public class Main {
     private static Object chamaSelecaoUsuario() {
         Object[] selectionValues = UsuarioDAO.findUsuariosSistemaInArray();
         String initialSelection = (String) selectionValues[0];
-        Object selection = JOptionPane.showInputDialog(null, "Selecione o usuario?",
-                "SeguradoraAPP", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
+        Object selection = JOptionPane.showInputDialog(null, "Selecione o usúario:",
+                "Login", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
         return selection;
     }
 }
