@@ -12,8 +12,24 @@ public class ServicoDAO {
     static List<Servico> servicos = new ArrayList<>();
 
     public static void salvar(Servico servico) {
-        servico.setId(servicos.size() + 1);
+        if(servico.getId() == null) {
+            servico.setId(servicos.size() + 1);
+            servicos.add(servico);
+        } else {
+            servicos.remove((int) (servico.getId() - 1));
+        }
         servicos.add(servico);
+    }
+
+    public void remover(Servico servico) {
+        if (servico.getId() != null) {
+            servicos.remove((int) (servico.getId() - 1));
+        }
+    }
+
+    public static ServicoDAO getServicoDAO() {
+        ServicoDAO servicoDAO = new ServicoDAO();
+        return servicoDAO;
     }
 
     public static List<Servico> buscarTodos() {
@@ -32,15 +48,15 @@ public class ServicoDAO {
         return filtrado;
     }
 
-    public static Object[] findServicosInArray() {
-        List<String> servicosNomes = new ArrayList<>();
-
-        for (Servico servico : servicos) {
-            servicosNomes.add(servico.getDescricao());
-        }
-
-        return servicosNomes.toArray();
-    }
+//    public static Object[] findServicosInArray() {
+//        List<String> servicosNomes = new ArrayList<>();
+//
+//        for (Servico servico : servicos) {
+//            servicosNomes.add(servico.getDescricao());
+//        }
+//
+//        return servicosNomes.toArray();
+//    }
 
     public static Servico findServicoByDescricao(String busca) {
         List<Servico> servicos = buscarTodos();

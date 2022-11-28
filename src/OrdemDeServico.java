@@ -1,5 +1,7 @@
 package src;
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -37,12 +39,38 @@ public class OrdemDeServico {
         }
     }
 
+    public String getDataFormatada(int tipoData) {
+        String data = null;
+        if(tipoData == 1) {
+            Date date = Date.valueOf(dataEntrada);
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            data = format.format(date);
+            return data;
+        } else {
+            Date date = Date.valueOf(dataLimite);
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            data = format.format(date);
+            return data;
+        }
+    }
+
+    public BigDecimal getSomaValorTOtalItensOS(){
+        BigDecimal soma = new BigDecimal(0);
+
+        for (Item itemValor : itens) {
+            soma = soma.add(itemValor.getValorTotal());
+            System.out.println("soma: " + soma);
+        }
+        System.out.println("somaTotal: " + soma);
+        return soma;
+    }
+
     public void setDataEntrada(LocalDate dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
     public void setItemAdd(Item item) {
-        itens.add(item);
+        this.itens.add(item);
     }
 
     public void setDataLimite(LocalDate dataLimite) {
@@ -61,7 +89,12 @@ public class OrdemDeServico {
         this.itens = itens;
     }
 
-    public void setValorTotal(BigDecimal valorTotal) {
+    public void setValorTotal() {
+        BigDecimal valorTotal = new BigDecimal(0);
+
+        for (Item itemValor : itens) {
+            valorTotal = valorTotal.add(itemValor.getValorTotal());
+        }
         this.valorTotal = valorTotal;
     }
 

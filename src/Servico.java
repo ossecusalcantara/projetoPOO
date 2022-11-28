@@ -11,6 +11,8 @@ public class Servico implements ItemVendavel{
     private Date tempo;
     private BigDecimal valor;
 
+    public Servico() {}
+
     public Servico( String descricao, String tempo, BigDecimal valor) throws ParseException {
         this.descricao = descricao;
         DateFormat formatador = new SimpleDateFormat("HH:mm");

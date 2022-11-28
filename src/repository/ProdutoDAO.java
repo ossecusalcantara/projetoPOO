@@ -18,8 +18,19 @@ public class ProdutoDAO {
     }
 
     public static void salvar(Produto produto) {
-        produto.setId(produtos.size() + 1);
+        if(produto.getId() == null) {
+            produto.setId(produtos.size() + 1);
+            produtos.add(produto);
+        } else {
+            produtos.remove((int) (produto.getId() - 1));
+        }
         produtos.add(produto);
+    }
+
+    public void remover(Produto produto) {
+        if (produto.getId() != null) {
+            produtos.remove((int) (produto.getId() - 1));
+        }
     }
 
     public static List<Produto> buscarTodos() {
@@ -61,21 +72,21 @@ public class ProdutoDAO {
 
     public static void IniciarDadosProduto() {
         Produto produto1 = new Produto( "Galaxy s20", 10, Marca.SAMSUNG);
-        produto1.setId(1);
         Produto produto2 = new Produto( "SmarthWatch", 10, Marca.LG);
-        produto2.setId(2);
         Produto produto3 = new Produto( "iPhone", 10, Marca.APPLE);
-        produto3.setId(3);
         Produto produto4 = new Produto( "Edge 20", 10, Marca.MOTOROLLA);
-        produto4.setId(4);
         Produto produto5 = new Produto( "Honor x-8", 10, Marca.HUAWEI);
-        produto5.setId(5);
 
         ProdutoDAO.salvar(produto1);
         ProdutoDAO.salvar(produto2);
         ProdutoDAO.salvar(produto3);
         ProdutoDAO.salvar(produto4);
         ProdutoDAO.salvar(produto5);
+    }
+
+    public static ProdutoDAO getProdutoDAO() {
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        return produtoDAO;
     }
 
 }
