@@ -1,6 +1,8 @@
 package src;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,9 +15,9 @@ public class NotaFiscal {
     private List<Item> itens;
     private BigDecimal valorBruto;
     private BigDecimal valorLiquido;
-    private BigDecimal bcIss;
+    private BigDecimal bcIss = new BigDecimal(9);
     private BigDecimal iss;
-    private BigDecimal bcIcms;
+    private BigDecimal bcIcms = new BigDecimal(17);
     private BigDecimal icms;
 
     public  NotaFiscal() {
@@ -54,6 +56,13 @@ public class NotaFiscal {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDataEmissaoFormatadaBr() {
+        Date date = Date.valueOf(dataEmissao);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        String data = format.format(date);
+        return data;
     }
 
     public LocalDate getDataEmissao() {
@@ -142,5 +151,25 @@ public class NotaFiscal {
 
     public void setIcms(BigDecimal icms) {
         this.icms = icms;
+    }
+
+    public void setIcms() {
+        this.icms = bcIcms.multiply(valorBruto).divide(BigDecimal.valueOf(100));
+        //System.out.println(bcIcms.multiply(valorBruto).divide(BigDecimal.valueOf(100)));
+    }
+
+    public void setIss() {
+        //System.out.println(valorBruto);
+        this.iss = bcIss.multiply(valorBruto).divide(BigDecimal.valueOf(100));
+        //System.out.println(bcIss.multiply(valorBruto).divide(BigDecimal.valueOf(100)));
+    }
+
+    public void setValorLiquido() {
+        BigDecimal valor = new BigDecimal(0);
+        valor = valorBruto;
+        valor = valor.subtract(desconto);
+        valor = valor.add(icms).add(iss);
+        this.valorLiquido = valor;
+        System.out.println(valor);
     }
 }

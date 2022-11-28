@@ -1,16 +1,16 @@
 package src;
-import src.form.RelatorioPessoaForm;
-import src.form.RelatorioProdutoForm;
-import src.repository.ClienteDAO;
-import src.repository.ProdutoDAO;
-import src.repository.ServicoDAO;
+import src.form.*;
+import src.repository.*;
 
 import javax.swing.*;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 import static src.AppMain.iniciarMenuPrincipal;
 
@@ -195,19 +195,28 @@ public class AppFuncoesCadastro {
                         Object ServicoSelecionado = chamaSelecaoServico();
                         Servico servico = ServicoDAO.findServicoByDescricao((String) ServicoSelecionado);
                         ItemServico nowItemS = new ItemServico();
-                        nowItemS.setValorTotal(servico.getValor());
-                        nowItemS.setItem(servico);
+                        nowItemS.setQuantidade(1);
+
+                        BigDecimal valorServico = servico.getValor();
+                        nowItemS.setValorUnitario(valorServico);
+                        nowItemS.setValorTotal(valorServico);
+
+                        nowItemS.setServico(servico);
                         nowOrdem.setItemAdd(nowItemS);
+                        nowOrdem.setValorTotal();
                         break;
                     case 1: //Adicionando Produto
                         Object produtoSelecionado = chamaSelecaoProduto();
                         ItemProduto nowItemP = new ItemProduto();
                         nowItemP.setQuantidade(Integer.parseInt(JOptionPane.showInputDialog(null,"Quantidade: ", "Cadastro de OS", JOptionPane.QUESTION_MESSAGE)));
                         nowItemP.setValorUnitario(new BigDecimal(JOptionPane.showInputDialog(null,"Valor Unitario: ", "Cadastro de OS", JOptionPane.QUESTION_MESSAGE)));
+
                         BigDecimal qtd = new BigDecimal(nowItemP.getQuantidade());
                         nowItemP.setValorTotal(qtd.multiply(nowItemP.getValorUnitario()));
-                        nowItemP.setItem(ProdutoDAO.findProdutoByDescricao((String) produtoSelecionado));
+
+                        nowItemP.setProduto(ProdutoDAO.findProdutoByDescricao((String) produtoSelecionado));
                         nowOrdem.setItemAdd(nowItemP);
+                        nowOrdem.setValorTotal();
                         break;
                     case 2: //SAIR
                         System.exit(0);
@@ -237,7 +246,82 @@ public class AppFuncoesCadastro {
             return nowOrdem;
         }
 
+        public static NotaFiscal gerarNotaFiscal() {
+            Random random = new Random();
+            BigDecimal valorDesconto;
+            NotaFiscal nowNota = new NotaFiscal();
+
+            //Select para escolher ordem de serviço
+            Object ServicoSelecionado = chamaSelecaoOS();
+            OrdemDeServico nowOS = OrdemDeServicoDAO.findOsByTitulo((String) ServicoSelecionado);
+            nowNota.setDataEmissao(LocalDate.now());
+            nowNota.setTipoNota(TipoNota.SAIDA);
+
+            // Gerar desconto e excption
+            try {
+                valorDesconto = new BigDecimal(JOptionPane.showInputDialog(null,"Desconto: ", "Gerar Nota Fiscal", JOptionPane.QUESTION_MESSAGE));
+                nowNota.setDesconto(valorDesconto);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"ERRO!!","Erro", JOptionPane.ERROR_MESSAGE);
+                valorDesconto = new BigDecimal(JOptionPane.showInputDialog(null,"Desconto: ", "Gerar Nota Fiscal", JOptionPane.QUESTION_MESSAGE));
+                nowNota.setDesconto(valorDesconto);
+            }
+
+            //Gerar número da nota
+                LocalDate localDate = LocalDate.now();
+                Date date = Date.valueOf(localDate);
+                SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+                String data = format.format(date);
+                Integer numeroDaNota = Integer.parseInt(data) + random.nextInt(10);
+
+            nowNota.setNumeroNota(numeroDaNota);
+            nowNota.setItens(nowOS.getItens());
+            nowNota.setValorBruto(nowOS.getSomaValorTOtalItensOS());
+            nowNota.setIcms();
+            nowNota.setIss();
+            nowNota.setValorLiquido();
+            return nowNota;
+        }
+
+        //Funções de Editar
+        static Produto editaProduto(Produto ProdutoEditado) {
+            String descricao = JOptionPane.showInputDialog(null, "Digite o nome do produto: ", ProdutoEditado.getDescricao());
+            //Não existe necessidade do atributo quantidade
+            Integer quantidade = Integer.valueOf(JOptionPane.showInputDialog(null, "Digite a quantidade do produto: ", ProdutoEditado.getQuantidade()));
+            Marca marca = Marca.valueOf(JOptionPane.showInputDialog(null, "Digite a marca do produto: ", ProdutoEditado.getMarca()));
+
+            Produto produto = new Produto();
+            produto.setDescricao(descricao);
+            produto.setQuantidade(quantidade);
+            produto.setMarca(marca);
+            produto.setId(ProdutoEditado.getId());
+
+            return produto;
+        }
+
+        static Servico editaServico(Servico servicoEditado) {
+            String descricao = JOptionPane.showInputDialog(null, "Digite a descrição do servico: ", servicoEditado.getDescricao());
+            Date tempo = Date.valueOf(JOptionPane.showInputDialog(null, "Digite o tempo médio de execução: ", servicoEditado.getTempo()));
+            BigDecimal valor = BigDecimal.valueOf(Long.parseLong(JOptionPane.showInputDialog(null, "Digite o valor do serviço: ", servicoEditado.getValor())));
+
+            Servico servico = new Servico();
+            servico.setDescricao(descricao);
+            servico.setTempo(tempo);
+            servico.setValor(valor);
+            servico.setId(servicoEditado.getId());
+
+            return servico;
+        }
+
         //Funões para esolher opções
+        private static Object chamaSelecaoOS() {
+            Object[] selectionValues = OrdemDeServicoDAO.findListaOsInArray();
+            String initialSelection = (String) selectionValues[0];
+            Object selection = JOptionPane.showInputDialog(null, "Selecione a OS: ",
+                    "Gerar Nota Fiscal", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
+            return selection;
+        }
+
         private static Object chamaSelecaoServico() {
             Object[] selectionValues = ServicoDAO.findListaServicoInArray();
             String initialSelection = (String) selectionValues[0];
@@ -292,67 +376,20 @@ public class AppFuncoesCadastro {
             RelatorioProdutoForm.emitirRelatorioProduto(produtos);
         }
 
-//        public static PessoaJuridica cadastrarMinhaEmprea() {
-//        //Função para cadastrar a empresa em que o sistema esta sendo usado
-//
-//            Endereco nowEndereco = new Endereco(
-//                    1, //ID por default 1 pois não sei como será incrementa os id's
-//                    JOptionPane.showInputDialog(null,"Rua: ", "Cadastro de Endereço", JOptionPane.QUESTION_MESSAGE),
-//                    Integer.parseInt(JOptionPane.showInputDialog(null,"Número: ","Cadastro de Endereço", JOptionPane.QUESTION_MESSAGE)),
-//                    JOptionPane.showInputDialog(null,"Bairro: ","Cadastro de Endereço", JOptionPane.QUESTION_MESSAGE),
-//                    JOptionPane.showInputDialog(null,"Cidade: ","Cadastro de Endereço", JOptionPane.QUESTION_MESSAGE),
-//                    JOptionPane.showInputDialog(null,"CEP: ","Cadastro de Endereço", JOptionPane.QUESTION_MESSAGE)
-//            );
-//
-//            PessoaJuridica nowPessoa = new PessoaJuridica(
-//                    1
-//                    , JOptionPane.showInputDialog(null,"Nome: ", "Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , nowEndereco
-//                    , JOptionPane.showInputDialog(null,"Telefone: ", "Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , JOptionPane.showInputDialog(null,"E-mail: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , JOptionPane.showInputDialog(null,"Razão Social: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , JOptionPane.showInputDialog(null,"CNPJ: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , JOptionPane.showInputDialog(null,"CENAE: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//                    , JOptionPane.showInputDialog(null,"Data de Abertura: ","Cadastro de Clientes",JOptionPane.QUESTION_MESSAGE)
-//            );
-//
-//            return nowPessoa;
-//        }
+        public static void chamaRelatorioNotas() {
+            List<NotaFiscal> notaFiscals = NotaFiscalDAO.buscarTodos();
+            RelatorioNotaFiscalForm.emitirRelatorioNotas(notaFiscals);
+        }
 
+        public static void chamaRelatorioServicos() {
+            List<Servico> servicos = ServicoDAO.buscarTodos();
+            RelatorioServicoForm.emitirRelatorioServico(servicos);
+        }
 
-//        public static NotaFiscal gerarNotaFiscal() {
-//            BigDecimal valor;
-//            // List que ira conter itens da nota
-//            List<Item> itensNota = new ArrayList<>();
-//
-//            Object opcaoSelecionada = chamaSelecaoProduto();
-//
-//            Produto produtoSelecionado = ProdutoDAO.findProdutoByDescricao((String) opcaoSelecionada);
-//            Item newItem = new ItemProduto(
-//                    1,
-//                    2 ,
-//                    new BigDecimal("10"),
-//                    new BigDecimal("10"),
-//                    new BigDecimal("10"),
-//                    TipoItem.PRODUTO,
-//                    produtoSelecionado
-//                    );
-//
-//            itensNota.add(newItem);
-//
-//            NotaFiscal nowNota = new NotaFiscal(
-//                    1
-//                    , new Date()
-//                    , TipoNota.ENTRADA
-//                    , 123456
-//                    , valor = new BigDecimal(123)
-//                    ,
-//            );
-//
-//            return nowNota;
-//        }
-
-
+        static void chamaRelatorioOS() {
+            List<OrdemDeServico> ordens = OrdemDeServicoDAO.buscarTodos();
+            RelatorioOrdemServicoForm.emitirRelatorioOS(ordens);
+        }
 
 }
 
