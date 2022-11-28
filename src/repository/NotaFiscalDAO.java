@@ -1,5 +1,6 @@
 package src.repository;
 
+import src.Item;
 import src.NotaFiscal;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ public class NotaFiscalDAO {
 
     public static void salvar(NotaFiscal nota) {
         nota.setId(notas.size() +1);
+        nota.setNumeroNota(notas.size() +1);
         notas.add(nota);
         getDadosNotaRelatorio(nota);
     }
@@ -49,8 +51,18 @@ public class NotaFiscalDAO {
                     "\n Numero: " + nota.getNumeroNota() +
                     "\n Data Emissão: " + nota.getDataEmissaoFormatadaBr() +
                     "\n Desconto (R$): " + nota.getDesconto() +
-                    "\n Valor Documento (R$)" + nota.getValorBruto() +
-                    "\n Valor Cobrado (R$)" + nota.getValorLiquido();
+                    "\n ICMS (R$):" + nota.getIcms() +
+                    "\n ISS (R$)" + nota.getIss() +
+                    "\n Valor Serviços/Produtos (R$):" + nota.getValorBruto() +
+                    "\n Valor Contabil (R$):" + nota.getValorContabil();
+        List<Item> itensNota= new ArrayList<>();
+        itensNota = nota.getItens();
+        menssagem += "\n ##################ITENS########################";
+        menssagem += "\n    DESCRIÇÃO  |   QUANTIDADE  |  VALOR TOTAL";
+        for (Item i : itensNota) {
+            menssagem += "\n   " + i.getItem().getDescricao() + "                " + i.getQuantidade() + "                         " + i.getValorTotal();
+        }
+        menssagem += "\n ###############################################";
 
         JOptionPane.showMessageDialog(null, menssagem,"",JOptionPane.INFORMATION_MESSAGE);
     }

@@ -71,6 +71,7 @@ public class ProdutoDAO {
     }
 
     public static void IniciarDadosProduto() {
+        System.out.println("Teste");
         Produto produto1 = new Produto( "Galaxy s20", 10, Marca.SAMSUNG);
         Produto produto2 = new Produto( "SmarthWatch", 10, Marca.LG);
         Produto produto3 = new Produto( "iPhone", 10, Marca.APPLE);

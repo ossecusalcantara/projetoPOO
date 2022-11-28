@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class NotaFiscal {
@@ -12,17 +13,32 @@ public class NotaFiscal {
     private TipoNota tipoNota; // Atributo verificador se Nota é entrada ou sida
     private Integer numeroNota;
     private BigDecimal desconto;
-    private List<Item> itens;
+    private List<Item> itens = new ArrayList<>();
     private BigDecimal valorBruto;
     private BigDecimal valorLiquido;
-    private BigDecimal bcIss = new BigDecimal(9);
+    private BigDecimal bcIss;
     private BigDecimal iss;
-    private BigDecimal bcIcms = new BigDecimal(17);
+    private BigDecimal bcIcms;
     private BigDecimal icms;
 
-    public  NotaFiscal() {
+
+    public void setValorTotalItens() {
+        BigDecimal somaValorServicos = new BigDecimal(0);
+        BigDecimal somaValorProdutos = new BigDecimal(0);
+
+        for (Item itemValor : itens) {
+            if(itemValor.getTipoItem() == TipoItem.PRODUTO) {
+                somaValorProdutos = somaValorProdutos.add(itemValor.getValorTotal());
+            } else {
+                somaValorServicos = somaValorServicos.add(itemValor.getValorTotal());
+            }
+        }
+        this.bcIss = somaValorServicos;
+        this.bcIcms = somaValorProdutos;
 
     }
+
+    public  NotaFiscal() {}
 
     public NotaFiscal(Integer id, LocalDate dataEmissao,  TipoNota tipoNota, Integer numeroNota, BigDecimal desconto, List<Item> itens, BigDecimal valorBruto, BigDecimal valorLiquido, BigDecimal bcIcms, BigDecimal icms) {
         this.id = id;
@@ -154,21 +170,29 @@ public class NotaFiscal {
     }
 
     public void setIcms() {
-        this.icms = bcIcms.multiply(valorBruto).divide(BigDecimal.valueOf(100));
-        //System.out.println(bcIcms.multiply(valorBruto).divide(BigDecimal.valueOf(100)));
+        this.icms = bcIcms.multiply(BigDecimal.valueOf(0.17));
+        System.out.println(icms);
     }
 
     public void setIss() {
-        //System.out.println(valorBruto);
-        this.iss = bcIss.multiply(valorBruto).divide(BigDecimal.valueOf(100));
-        //System.out.println(bcIss.multiply(valorBruto).divide(BigDecimal.valueOf(100)));
+        this.iss = bcIss.multiply(BigDecimal.valueOf(0.03));
+        System.out.println(iss);
+    }
+
+    public BigDecimal getValorContabil() {
+        BigDecimal valorContabil = new BigDecimal(0);
+
+        valorContabil = valorBruto;
+        valorContabil = valorContabil.add(iss);
+        valorContabil = valorContabil.subtract(desconto);
+        return valorContabil;
     }
 
     public void setValorLiquido() {
         BigDecimal valor = new BigDecimal(0);
         valor = valorBruto;
         valor = valor.subtract(desconto);
-        valor = valor.add(icms).add(iss);
+        valor = valor.add(iss);
         this.valorLiquido = valor;
         System.out.println(valor);
     }

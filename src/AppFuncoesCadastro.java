@@ -202,6 +202,7 @@ public class AppFuncoesCadastro {
                         nowItemS.setValorTotal(valorServico);
 
                         nowItemS.setServico(servico);
+                        nowItemS.setTipoItem(TipoItem.SERVICO);
                         nowOrdem.setItemAdd(nowItemS);
                         nowOrdem.setValorTotal();
                         break;
@@ -215,6 +216,7 @@ public class AppFuncoesCadastro {
                         nowItemP.setValorTotal(qtd.multiply(nowItemP.getValorUnitario()));
 
                         nowItemP.setProduto(ProdutoDAO.findProdutoByDescricao((String) produtoSelecionado));
+                        nowItemP.setTipoItem(TipoItem.PRODUTO);
                         nowOrdem.setItemAdd(nowItemP);
                         nowOrdem.setValorTotal();
                         break;
@@ -268,14 +270,15 @@ public class AppFuncoesCadastro {
             }
 
             //Gerar número da nota
-                LocalDate localDate = LocalDate.now();
-                Date date = Date.valueOf(localDate);
-                SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
-                String data = format.format(date);
-                Integer numeroDaNota = Integer.parseInt(data) + random.nextInt(10);
+//                LocalDate localDate = LocalDate.now();
+//                Date date = Date.valueOf(localDate);
+//                SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+//                String data = format.format(date);
+//                Integer numeroDaNota = Integer.parseInt(data) + random.nextInt(10);
 
-            nowNota.setNumeroNota(numeroDaNota);
+            //nowNota.setNumeroNota(numeroDaNota);
             nowNota.setItens(nowOS.getItens());
+            nowNota.setValorTotalItens();
             nowNota.setValorBruto(nowOS.getSomaValorTOtalItensOS());
             nowNota.setIcms();
             nowNota.setIss();
