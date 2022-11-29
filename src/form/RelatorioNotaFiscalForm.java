@@ -18,7 +18,7 @@ public class RelatorioNotaFiscalForm extends JPanel {
     public static final long serialVersionUID = 1L;
 
     public static final String[] nomeColunas =
-            {"Numero", "Data Emissão", "Desconto", "Valor Dcumento", "Valor Cobrado", ""};
+            {"Numero", "Data Emissão", "Desconto", "Valor Contabil", "Cliente",""};
 
     protected JTable table;
     protected JScrollPane scroller;
@@ -36,7 +36,7 @@ public class RelatorioNotaFiscalForm extends JPanel {
         scroller = new javax.swing.JScrollPane(table);
         table.setPreferredScrollableViewportSize(new java.awt.Dimension(500, 300));
 
-        TableColumn colunaEscondida = table.getColumnModel().getColumn(TableCliente.INDEX_ESCONDIDO);
+        TableColumn colunaEscondida = table.getColumnModel().getColumn(TableNotaFiscal.INDEX_ESCONDIDO);
         colunaEscondida.setMinWidth(2);
         colunaEscondida.setPreferredWidth(2);
         colunaEscondida.setMaxWidth(2);

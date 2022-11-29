@@ -20,7 +20,15 @@ public class NotaFiscal {
     private BigDecimal iss;
     private BigDecimal bcIcms;
     private BigDecimal icms;
+    private Cliente cliente;
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     public void setValorTotalItens() {
         BigDecimal somaValorServicos = new BigDecimal(0);

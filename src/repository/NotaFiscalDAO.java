@@ -46,15 +46,16 @@ public class NotaFiscalDAO {
 
     public static void getDadosNotaRelatorio(NotaFiscal nota) {
         String menssagem = "";
-        menssagem = "Nota egrada com sucesso!! \n" +
+        menssagem = "Nota gerada com sucesso!! \n" +
                     "Dados da Nota \n" +
+                    "\n Cliente: " + nota.getCliente().getPessoa().getNome() +
                     "\n Numero: " + nota.getNumeroNota() +
                     "\n Data Emissão: " + nota.getDataEmissaoFormatadaBr() +
                     "\n Desconto (R$): " + nota.getDesconto() +
-                    "\n ICMS (R$):" + nota.getIcms() +
-                    "\n ISS (R$)" + nota.getIss() +
-                    "\n Valor Serviços/Produtos (R$):" + nota.getValorBruto() +
-                    "\n Valor Contabil (R$):" + nota.getValorContabil();
+                    "\n ICMS (R$): " + nota.getIcms() +
+                    "\n ISS (R$): " + nota.getIss() +
+                    "\n Valor Serviços/Produtos (R$): " + nota.getValorBruto() +
+                    "\n Valor Contabil (R$): " + nota.getValorContabil();
         List<Item> itensNota= new ArrayList<>();
         itensNota = nota.getItens();
         menssagem += "\n ##################ITENS########################";
