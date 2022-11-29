@@ -43,7 +43,7 @@ public class TableNotaFiscal extends AbstractTableModel {
         NotaFiscal registroNotas = (NotaFiscal) vetorDados.get(linha);
         switch (coluna) {
             case INDEX_NUMERO:
-                return registroNotas.getNumeroNota();
+                return registroNotas.getNumeroNota(); //gfgfg
             case INDEX_DATA:
                 return registroNotas.getDataEmissaoFormatadaBr();
             case INDEX_DESCONTO:
