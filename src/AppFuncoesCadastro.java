@@ -256,6 +256,8 @@ public class AppFuncoesCadastro {
             //Select para escolher ordem de serviço
             Object ServicoSelecionado = chamaSelecaoOS();
             OrdemDeServico nowOS = OrdemDeServicoDAO.findOsByTitulo((String) ServicoSelecionado);
+            Object ClienteSelecionado = chamaSelecaoCliente();
+            nowNota.setCliente(ClienteDAO.findClienteByNome((String) ClienteSelecionado));
             nowNota.setDataEmissao(LocalDate.now());
             nowNota.setTipoNota(TipoNota.SAIDA);
 
@@ -269,12 +271,6 @@ public class AppFuncoesCadastro {
                 nowNota.setDesconto(valorDesconto);
             }
 
-            //Gerar número da nota
-//                LocalDate localDate = LocalDate.now();
-//                Date date = Date.valueOf(localDate);
-//                SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
-//                String data = format.format(date);
-//                Integer numeroDaNota = Integer.parseInt(data) + random.nextInt(10);
 
             //nowNota.setNumeroNota(numeroDaNota);
             nowNota.setItens(nowOS.getItens());
@@ -291,7 +287,8 @@ public class AppFuncoesCadastro {
             String descricao = JOptionPane.showInputDialog(null, "Digite o nome do produto: ", ProdutoEditado.getDescricao());
             //Não existe necessidade do atributo quantidade
             Integer quantidade = Integer.valueOf(JOptionPane.showInputDialog(null, "Digite a quantidade do produto: ", ProdutoEditado.getQuantidade()));
-            Marca marca = Marca.valueOf(JOptionPane.showInputDialog(null, "Digite a marca do produto: ", ProdutoEditado.getMarca()));
+            //Marca marca = Marca.valueOf(JOptionPane.showInputDialog(null, "Digite a marca do produto: ", ProdutoEditado.getMarca()));
+            Marca marca = chamaSelecaoMarca();
 
             Produto produto = new Produto();
             produto.setDescricao(descricao);
@@ -341,7 +338,16 @@ public class AppFuncoesCadastro {
             return selection;
         }
 
-        private static Marca chamaSelecaoMarca() {
+        private static Object chamaSelecaoCliente() {
+            Object[] selectionValues = ClienteDAO.findPessoasInArray();
+            String initialSelection = (String) selectionValues[0];
+            Object selection = JOptionPane.showInputDialog(null, "Selecione o cliente: ",
+                    "Gerar Nota Fiscal", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
+            return selection;
+        }
+
+
+    private static Marca chamaSelecaoMarca() {
             String codigo = JOptionPane.showInputDialog(
                     null,
                     "Marcas: \n 01.SAMSUNG \n 02.LG \n 03.APPLE \n " +

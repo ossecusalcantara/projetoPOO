@@ -5,25 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d9e03b5-26a2-4381-92fb-4b0c259fe9af" name="Changes" comment="Alterações 26/11">
-      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/.idea/shelf/Uncommitted_changes_before_Update_at_19_11_2022_20_43_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/AppFuncoesCadastro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/AppFuncoesCadastro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/AppMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/AppMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/NotaFiscal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/NotaFiscal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/OrdemDeServico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/OrdemDeServico.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/Servico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/Servico.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/NotaFiscalDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/NotaFiscalDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/OrdemDeServicoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/OrdemDeServicoDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/ProdutoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/ProdutoDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/ServicoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projetoPOO/src/repository/ServicoDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFuncoesCadastro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFuncoesCadastro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/NotaFiscal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NotaFiscal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrdemDeServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrdemDeServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Servico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/NotaFiscalDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/NotaFiscalDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/ProdutoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ProdutoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/ServicoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ServicoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/ClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ClienteDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +156,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669473790505</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Alterações 26/11">
+      <created>1669597959105</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669597959105</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Alterações 26/11">
+      <created>1669679118044</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669679118044</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

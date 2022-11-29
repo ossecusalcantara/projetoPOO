@@ -1,9 +1,6 @@
 package src.repository;
 
-import src.Cliente;
-import src.Pessoa;
-import src.PessoaFisica;
-import src.PessoaJuridica;
+import src.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +28,17 @@ public class ClienteDAO {
             }
         }
         return  clientesFiltrados;
+    }
+
+    public static Cliente findClienteByNome(String busca) {
+        List<Cliente> clientes = buscarTodos();
+
+        for (Cliente cliente : clientes) {
+            if (busca.equals(cliente.getPessoa().getNome())) {
+                return cliente;
+            }
+        }
+        return null;
     }
 
     public static Object[] findPessoasInArray() {

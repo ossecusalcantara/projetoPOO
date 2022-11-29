@@ -13,7 +13,7 @@ public class TableNotaFiscal extends AbstractTableModel {
     public static final int INDEX_DATA = 1;
     public static final int INDEX_DESCONTO  = 2;
     public static final int INDEX_VALORBRUTO = 3;
-    public static final int INDEX_VALORLIQUIDO = 4;
+    public static final int INDEX_CLIENTE = 4;
     public static final int INDEX_ESCONDIDO = 5;
 
     protected String[] nomeColunas;
@@ -43,18 +43,17 @@ public class TableNotaFiscal extends AbstractTableModel {
         NotaFiscal registroNotas = (NotaFiscal) vetorDados.get(linha);
         switch (coluna) {
             case INDEX_NUMERO:
-                return registroNotas.getNumeroNota();
+                return registroNotas.getNumeroNota(); //gfgfg
             case INDEX_DATA:
                 return registroNotas.getDataEmissaoFormatadaBr();
             case INDEX_DESCONTO:
                 return registroNotas.getDesconto();
             case INDEX_VALORBRUTO:
-                return registroNotas.getValorBruto();
-            case INDEX_VALORLIQUIDO:
-                System.out.println("Teste");
-                return registroNotas.getValorLiquido();
+                return registroNotas.getValorContabil();
+            case INDEX_CLIENTE:
+                return registroNotas.getCliente().getPessoa().getNome();
             default:
-                return new Object();
+                return"";
         }
     }
 
