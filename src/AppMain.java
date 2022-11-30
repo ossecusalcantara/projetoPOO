@@ -16,6 +16,7 @@ public class AppMain {
         ClienteDAO.iniciarDadosCliente();
         ProdutoDAO.IniciarDadosProduto();
         ServicoDAO.iniciarDadosServico();
+        OrdemDeServicoDAO.IniciarDadosOrdemServico();
         Object usuarioLogado = chamaSelecaoUsuario();
         checaSenhaUsuario(usuarioLogado);
 
